@@ -1,20 +1,82 @@
 /*ffc312*/
-.formwindow
+.formWindow
 {
-	
 	width: 40%;
 	margin: auto;
-	transform: translateY(70%);
 	padding-left: 2%;
 	padding-right: 2%;
-	padding-top: 5%;
-	padding-bottom: 5%;
+	padding-top: 4%;
+	padding-bottom: 4%;
 	align-content: center;
-	background-color: rgba(0,0,0,0.17);
-	background-color: rgba(255,255,255,0.2);
+	
 }
 .formbg
 {
 	background-image: url("images/FormBg.jpg");
 	background-size: cover;
+}
+#userLoginWindow{
+	transform: translateY(35%);
+	background-color: rgba(0,0,0,0.2);
+}
+#adminLoginWindow{
+
+}
+#userRegisterWindow{
+	transform: translateY(10%);
+	background-color: rgba(0,0,0,0.2);
+}
+.formText{
+	font-family: Tahoma;
+	font-size: 14px;
+	color: white;
+}
+.formTextInvert{
+	font-family: Tahoma;
+	font-size: 14px;
+	color: black;
+}
+input:not(.yellowBtn){
+	width: 30%;
+	height: 5%;
+	border-radius: 5px;
+	padding: 5px;
+}
+.userFormInput{
+	border:0.5px solid white;
+	background-color: unset;
+}
+.adminFormInput{
+border:0.5px solid lightgrey;
+}
+
+.yellowBtn{
+	width: 80%;
+	margin: auto;
+	height: 5%;
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #ffc312;
+	color: white;
+	font-family: Tahoma;
+	font-size: 16px;
+	border:none;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: lightgrey;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: lightgrey;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: lightgrey;
+}
+.heading{
+	font-family: Tahoma;
+	font-weight: bolder;
+	font-size: 30px;
+	margin: 0;
 }
