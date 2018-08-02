@@ -1,46 +1,74 @@
-/*ffc312*/
+/*yellow: #ffc312
+light grey: #eaeaea
+dark grey: #555555*/
+.body{
+	margin: 0px;
+}
+.full-container{
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+}
+.center-container{
+	position: relative;
+	width: 80%;
+	height: 90vh;
+	margin: auto;
+	overflow-y: hidden;
+}
 .formWindow
 {
 	width: 40%;
-	margin: auto;
-	padding-left: 2%;
-	padding-right: 2%;
-	padding-top: 4%;
-	padding-bottom: 4%;
-	align-content: center;
+    height: auto;
+    margin: auto;
+    padding: 4% 2%;
+    align-content: center;
+    top: 10%;
+    position: relative;
 	
 }
+
 .formbg
 {
-	background-image: url("images/1.jpg");
+	background-image: url("images/dark.jpg");
 	background-size: cover;
 }
 #userLoginWindow{
-	transform: translateY(35%);
+	/*transform: translateY(35%);*/
 	background-color: rgba(0,0,0,0.2);
 }
 #adminLoginWindow{
 
 }
 #userRegisterWindow{
-	transform: translateY(10%);
+	/*transform: translateY(10%);*/
 	background-color: rgba(0,0,0,0.2);
 }
-.formText{
+.label{
 	font-family: Tahoma;
 	font-size: 14px;
 	color: white;
 }
-.formTextInvert{
+.labelInvert{
 	font-family: Tahoma;
 	font-size: 14px;
-	color: black;
+	color: #555555;
+}
+.formText{
+	color: #eaeaea;
+	font-family: Tahoma;
+	font-size: 14px;
+	text-align: center;
+}
+p{
+	padding: 5px;
 }
 input:not(.yellowBtn){
-	width: 30%;
+	width: 70%;
 	height: 5%;
 	border-radius: 5px;
 	padding: 5px;
+	float: right;
 }
 .userFormInput{
 	border:0.5px solid white;
@@ -51,7 +79,7 @@ border:0.5px solid lightgrey;
 }
 
 .yellowBtn{
-	width: 80%;
+	width: 90%;
 	margin: auto;
 	height: 5%;
 	border-radius: 5px;
@@ -61,6 +89,11 @@ border:0.5px solid lightgrey;
 	font-family: Tahoma;
 	font-size: 16px;
 	border:none;
+	position: relative;
+	left: 5%;
+}
+.yellowBtn:hover{
+	cursor: pointer;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: lightgrey;
@@ -79,4 +112,7 @@ border:0.5px solid lightgrey;
 	font-weight: bolder;
 	font-size: 30px;
 	margin: 0;
+}
+.forgotPasswd{
+	float: right;
 }
