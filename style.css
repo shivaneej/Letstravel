@@ -34,14 +34,12 @@ dark grey: #555555*/
 	background-size: cover;
 }
 #userLoginWindow{
-	/*transform: translateY(35%);*/
 	background-color: rgba(0,0,0,0.2);
 }
 #adminLoginWindow{
 
 }
 #userRegisterWindow{
-	/*transform: translateY(10%);*/
 	background-color: rgba(0,0,0,0.2);
 }
 .label{
@@ -114,5 +112,20 @@ border:0.5px solid lightgrey;
 	margin: 0;
 }
 .forgotPasswd{
+	float: right;
+}
+.survey{
+	background-color: #111111;
+	color: #ffffff;
+	padding: 2%;
+}
+.surveyText{
+	width: 50%;
+	text-align: center;
+	display: inline;
+}
+.surveyBtn{
+	width: 20%;
+	display: inline;
 	float: right;
 }

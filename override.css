@@ -7,7 +7,6 @@
     float: left;
     min-width: 5rem;
     padding: .5rem 0;
-    margin: .125rem 0 0;
     font-size: 1rem;
     color: #ffffff;
     text-align: left;
@@ -28,4 +27,8 @@
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+}
+.dropdown-item:hover {
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.2);
 }
