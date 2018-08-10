@@ -35,3 +35,27 @@
 .bg-dark{
     background-color: #111111!important;
 }
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin-bottom: 15%;
+}
+a.toggle{
+text-decoration: none;
+color: initial;
+}
+a.toggle:hover{
+    cursor: pointer;
+}
+a.toggle:after{
+    text-decoration: none;
+}

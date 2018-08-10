@@ -93,6 +93,26 @@ border:0.5px solid lightgrey;
 .yellowBtn:hover{
 	cursor: pointer;
 }
+.secondaryBtn{
+	width: 90%;
+	margin: auto;
+	height: 5%;
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #ffffff;
+	color: #111111;
+	border: 1px solid #111111;
+	font-family: Tahoma;
+	font-size: 16px;
+	position: relative;
+	left: 5%;
+}
+.secondaryBtn:hover{
+	cursor: pointer;
+	background-color: #111111;
+	color: #ffffff;
+	border: none;
+}
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: lightgrey;
     opacity: 1; /* Firefox */
@@ -128,4 +148,44 @@ border:0.5px solid lightgrey;
 	width: 20%;
 	display: inline;
 	float: right;
+}
+.viewAllBtn{
+	width: 15%;
+	display: inline;
+	float: right;
+}
+.header{
+	background-color: #ffffff;
+	color: #111111;
+	padding: 2%;
+}
+.headingText{
+	width: 50%;
+	text-align: center;
+	display: inline;
+	font-weight: bolder;
+	color: #111111;
+	font-size: 24px;
+}
+.joinBtn {
+    width: 20%;
+    display: inline;
+    float: right;
+    margin: unset;
+    left: -2%;
+}
+.downloadFile{
+	text-decoration: none;
+	color: #ffc312;
+}
+#terms{
+	font-family: Tahoma;
+	color: #898989;
+	font-size: 12px;
+}
+.modalText{
+	font-size: 16px;
+	font-family: Tahoma;
+	color: #555555;
+	margin: 5%;
 }
