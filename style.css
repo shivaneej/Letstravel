@@ -191,3 +191,27 @@ border:0.5px solid lightgrey;
 	color: #555555;
 	margin: 5%;
 }
+.footerText{
+	font-family: Tahoma;
+	color: #898989;
+	font-size: 16px;
+}
+.icon{
+	padding: 0px;
+	color: #ffc312;
+}
+.social-icon{
+	color: #eaeaea;
+	padding: 0px;
+}
+.social-icon:hover{
+	color: #ffc312;
+}
+.madeby{
+	color: #898989;
+	font-family: Tahoma;
+	font-size: 12px;
+}
+.madeBy font{
+	color: #ffc312;
+}

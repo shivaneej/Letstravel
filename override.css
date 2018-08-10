@@ -59,3 +59,26 @@ a.toggle:hover{
 a.toggle:after{
     text-decoration: none;
 }
+
+.page-footer{
+    background-color: #111111;
+    padding: 0%;
+    margin: 0%;
+}
+p.footerText {
+    margin-top: 0;
+    margin-bottom: 0rem;
+    padding: 0px;
+}
+a.footerText{
+    margin-top: 0;
+    margin-bottom: 0rem;
+    padding: 0px;
+    font-family: Tahoma;
+    color: #898989;
+    text-decoration: none;   
+}
+.pb-3, .py-3 {
+    padding-bottom: 0rem!important;
+    padding-top: 0rem!important;
+}
