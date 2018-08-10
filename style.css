@@ -1,6 +1,8 @@
 /*yellow: #ffc312
-light grey: #eaeaea
-dark grey: #555555*/
+light grey: #eaeaea (form text)
+dark grey: #555555 (for text)
+medium grey: #898989
+bluosh grey color: #2c3e50*/
 .body{
 	margin: 0px;
 }
@@ -100,8 +102,8 @@ border:0.5px solid lightgrey;
 	border-radius: 5px;
 	padding: 5px;
 	background-color: #ffffff;
-	color: #111111;
-	border: 1px solid #111111;
+	color: #2c3e50;
+	border: 1px solid #2c3e50;
 	font-family: Tahoma;
 	font-size: 16px;
 	position: relative;
@@ -109,7 +111,7 @@ border:0.5px solid lightgrey;
 }
 .secondaryBtn:hover{
 	cursor: pointer;
-	background-color: #111111;
+	background-color: #2c3e50;
 	color: #ffffff;
 	border: none;
 }
