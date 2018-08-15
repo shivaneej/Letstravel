@@ -52,11 +52,12 @@
 a.toggle{
 text-decoration: none;
 color: initial;
+margin-bottom: 3%;
 }
 a.toggle:hover{
     cursor: pointer;
 }
-a.toggle:after{
+a.toggle:visited{
     text-decoration: none;
 }
 
