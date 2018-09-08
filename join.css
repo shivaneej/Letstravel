@@ -1,0 +1,55 @@
+.linkBtn{
+	border: none;
+	background-color: unset;
+	color: #0984e3;
+	text-decoration: none;
+	font-family: Tahoma;
+}
+.linkBtn:hover{
+	text-decoration: none;
+	cursor: pointer;
+	color: #0984e3;
+}
+button.linkBtn{
+	position: relative;
+	right: 0%; 
+	position: absolute;
+}
+.topButtons{
+	width:100%; 
+}
+.yellowBtn{
+	width: 90%;
+	margin: auto;
+	height: 5%;
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #ffc312;
+	color: white;
+	font-family: Tahoma;
+	font-size: 16px;
+	border:none;
+	/*position: relative;
+	left: 5%;*/
+}
+.yellowBtn:hover{
+	cursor: pointer;
+}
+#iniPCount{
+	width: 7%;
+	margin: unset;
+}
+#addbtn{
+	color: #ffc312;
+	z-index:2;
+}
+.form-group{
+	position: relative;
+}
+.selectloc{
+	width: 30%;
+}
+.bottomBtn{
+	z-index: 1;
+	margin-bottom: 2%;
+}

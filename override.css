@@ -52,12 +52,11 @@
 a.toggle{
 text-decoration: none;
 color: initial;
-margin-bottom: 3%;
 }
 a.toggle:hover{
     cursor: pointer;
 }
-a.toggle:visited{
+a.toggle:after{
     text-decoration: none;
 }
 
@@ -82,4 +81,12 @@ a.footerText{
 .pb-3, .py-3 {
     padding-bottom: 0rem!important;
     padding-top: 0rem!important;
+}
+.joinForm{
+    width:90%;
+    height:auto;
+    margin:auto;
+    position: absolute;
+    top:10%;
+    left:5%;
 }

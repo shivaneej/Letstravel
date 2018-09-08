@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2018 at 05:04 PM
+-- Generation Time: Aug 28, 2018 at 05:34 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -47,19 +47,6 @@ CREATE TABLE `age_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assign`
---
-
-CREATE TABLE `assign` (
-  `AdminEmail` varchar(40) NOT NULL,
-  `TourGuideId` smallint(5) NOT NULL,
-  `TripId` varchar(5) NOT NULL,
-  `AcceptanceStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `get_recommendation`
 --
 
@@ -90,20 +77,6 @@ CREATE TABLE `join_trip` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rate`
---
-
-CREATE TABLE `rate` (
-  `UserEmail` varchar(40) NOT NULL,
-  `TourGuideId` smallint(5) NOT NULL,
-  `TripId` varchar(10) NOT NULL,
-  `Rate` tinyint(1) NOT NULL,
-  `Review` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `recommendation`
 --
 
@@ -112,22 +85,6 @@ CREATE TABLE `recommendation` (
   `Category` varchar(20) NOT NULL,
   `Link` varchar(40) NOT NULL,
   `NumberOfDays` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tour_guide`
---
-
-CREATE TABLE `tour_guide` (
-  `FirstName` varchar(20) NOT NULL,
-  `LastName` varchar(20) NOT NULL,
-  `Id` smallint(5) NOT NULL,
-  `Email` varchar(40) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `AverageRating` decimal(3,0) DEFAULT NULL,
-  `CreatedBy` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -144,7 +101,9 @@ CREATE TABLE `trip` (
   `Itinerary` varchar(20) NOT NULL,
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
-  `CreatedBy` int(40) NOT NULL
+  `CreatedBy` varchar(40) NOT NULL,
+  `GuideName` varchar(40) NOT NULL,
+  `GuideContact` bigint(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -169,8 +128,10 @@ CREATE TABLE `user` (
   `LastName` varchar(20) NOT NULL,
   `Email` varchar(40) NOT NULL,
   `Password` varchar(15) NOT NULL,
-  `Mobile` int(10) NOT NULL,
-  `City` varchar(20) NOT NULL
+  `Mobile` bigint(10) NOT NULL,
+  `City` varchar(20) NOT NULL,
+  `Rate` tinyint(1) UNSIGNED NOT NULL,
+  `Review` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -190,19 +151,11 @@ ALTER TABLE `age_group`
   ADD PRIMARY KEY (`Location`,`AgeGroup`);
 
 --
--- Indexes for table `assign`
---
-ALTER TABLE `assign`
-  ADD PRIMARY KEY (`TourGuideId`,`TripId`),
-  ADD KEY `AdminEmail` (`AdminEmail`),
-  ADD KEY `TripId` (`TripId`);
-
---
 -- Indexes for table `get_recommendation`
 --
 ALTER TABLE `get_recommendation`
   ADD PRIMARY KEY (`UserEmail`,`Location`),
-  ADD KEY `Location` (`Location`);
+  ADD KEY `get_recommendation_ibfk_2` (`Location`);
 
 --
 -- Indexes for table `join_trip`
@@ -213,32 +166,17 @@ ALTER TABLE `join_trip`
   ADD KEY `UserEmail` (`UserEmail`);
 
 --
--- Indexes for table `rate`
---
-ALTER TABLE `rate`
-  ADD PRIMARY KEY (`UserEmail`,`TourGuideId`,`TripId`),
-  ADD KEY `TourGuideId` (`TourGuideId`),
-  ADD KEY `TripId` (`TripId`);
-
---
 -- Indexes for table `recommendation`
 --
 ALTER TABLE `recommendation`
   ADD PRIMARY KEY (`Location`);
 
 --
--- Indexes for table `tour_guide`
---
-ALTER TABLE `tour_guide`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `Email` (`Email`),
-  ADD KEY `CreatedBy` (`CreatedBy`);
-
---
 -- Indexes for table `trip`
 --
 ALTER TABLE `trip`
-  ADD PRIMARY KEY (`TripId`);
+  ADD PRIMARY KEY (`TripId`),
+  ADD KEY `CreatedBy` (`CreatedBy`);
 
 --
 -- Indexes for table `trip_group`
@@ -260,21 +198,14 @@ ALTER TABLE `user`
 -- Constraints for table `age_group`
 --
 ALTER TABLE `age_group`
-  ADD CONSTRAINT `age_group_ibfk_1` FOREIGN KEY (`Location`) REFERENCES `recommendation` (`Location`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `assign`
---
-ALTER TABLE `assign`
-  ADD CONSTRAINT `assign_ibfk_1` FOREIGN KEY (`AdminEmail`) REFERENCES `admin` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `assign_ibfk_2` FOREIGN KEY (`TripId`) REFERENCES `trip` (`TripId`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `age_group_ibfk_1` FOREIGN KEY (`Location`) REFERENCES `recommendation` (`Location`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `get_recommendation`
 --
 ALTER TABLE `get_recommendation`
-  ADD CONSTRAINT `get_recommendation_ibfk_1` FOREIGN KEY (`UserEmail`) REFERENCES `user` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `get_recommendation_ibfk_2` FOREIGN KEY (`Location`) REFERENCES `recommendation` (`Location`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `get_recommendation_ibfk_1` FOREIGN KEY (`UserEmail`) REFERENCES `user` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `get_recommendation_ibfk_2` FOREIGN KEY (`Location`) REFERENCES `recommendation` (`Location`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `join_trip`
@@ -284,24 +215,16 @@ ALTER TABLE `join_trip`
   ADD CONSTRAINT `join_trip_ibfk_2` FOREIGN KEY (`UserEmail`) REFERENCES `user` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `rate`
+-- Constraints for table `trip`
 --
-ALTER TABLE `rate`
-  ADD CONSTRAINT `rate_ibfk_1` FOREIGN KEY (`UserEmail`) REFERENCES `user` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `rate_ibfk_2` FOREIGN KEY (`TourGuideId`) REFERENCES `tour_guide` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `rate_ibfk_3` FOREIGN KEY (`TripId`) REFERENCES `trip` (`TripId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `tour_guide`
---
-ALTER TABLE `tour_guide`
-  ADD CONSTRAINT `tour_guide_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `admin` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `trip`
+  ADD CONSTRAINT `trip_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `admin` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `trip_group`
 --
 ALTER TABLE `trip_group`
-  ADD CONSTRAINT `trip_group_ibfk_1` FOREIGN KEY (`Location`) REFERENCES `recommendation` (`Location`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `trip_group_ibfk_1` FOREIGN KEY (`Location`) REFERENCES `recommendation` (`Location`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
