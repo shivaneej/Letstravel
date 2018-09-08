@@ -1,22 +1,22 @@
+body{
+	font-family: 'Montserrat',sans-serif;
+}
 .linkBtn{
 	border: none;
 	background-color: unset;
-	color: #0984e3;
+	color: #ffc312;
 	text-decoration: none;
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 }
 .linkBtn:hover{
 	text-decoration: none;
 	cursor: pointer;
-	color: #0984e3;
+	color: #ffc312;
 }
-button.linkBtn{
-	position: relative;
-	right: 0%; 
-	position: absolute;
-}
+
 .topButtons{
 	width:100%; 
+	padding-bottom: 1%;
 }
 .yellowBtn{
 	width: 90%;
@@ -26,7 +26,7 @@ button.linkBtn{
 	padding: 5px;
 	background-color: #ffc312;
 	color: white;
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-size: 16px;
 	border:none;
 	/*position: relative;
@@ -42,6 +42,8 @@ button.linkBtn{
 #addbtn{
 	color: #ffc312;
 	z-index:2;
+	position: absolute;
+	right: 0%;
 }
 .form-group{
 	position: relative;
@@ -52,4 +54,39 @@ button.linkBtn{
 .bottomBtn{
 	z-index: 1;
 	margin-bottom: 2%;
+}
+.delBtn
+{
+	border: none;
+	background-color: white;
+	color: #ff3f34;
+	padding: 0 0;
+	margin:0; 
+	margin-left: 10%;
+}
+.bottomBtn{
+	padding: 0%;
+	width: 60%;
+	margin: 0%; 
+	height: 120%;
+	position: absolute;
+	right: 0%;
+}
+.bottomBtn:hover{
+	background-color: #44bd32;
+}
+.secondaryBtn{
+	width: 60%;
+	margin: 0;
+	height: 120%;
+	border-radius: 5px;
+	padding: 0;
+	background-color: #ffffff;
+	color: #2c3e50;
+	border: 1px solid #2c3e50;
+	font-family: 'Montserrat',sans-serif;
+	font-size: 16px;
+}
+.secondaryBtn:hover{
+	cursor: pointer;
 }

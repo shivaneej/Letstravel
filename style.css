@@ -5,6 +5,7 @@ medium grey: #898989
 bluosh grey color: #2c3e50*/
 .body{
 	margin: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
 .full-container{
 	margin: 0px;
@@ -45,18 +46,18 @@ bluosh grey color: #2c3e50*/
 	background-color: rgba(0,0,0,0.2);
 }
 .label{
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-size: 14px;
 	color: white;
 }
 .labelInvert{
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-size: 14px;
 	color: #555555;
 }
 .formText{
 	color: #eaeaea;
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-size: 14px;
 	text-align: center;
 }
@@ -86,7 +87,7 @@ border:0.5px solid lightgrey;
 	padding: 5px;
 	background-color: #ffc312;
 	color: white;
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-size: 16px;
 	border:none;
 	position: relative;
@@ -104,7 +105,7 @@ border:0.5px solid lightgrey;
 	background-color: #ffffff;
 	color: #2c3e50;
 	border: 1px solid #2c3e50;
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-size: 16px;
 	position: relative;
 	left: 5%;
@@ -128,7 +129,7 @@ border:0.5px solid lightgrey;
     color: lightgrey;
 }
 .heading{
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-weight: bolder;
 	font-size: 30px;
 	margin: 0;
@@ -170,7 +171,7 @@ border:0.5px solid lightgrey;
 	font-size: 24px;
 }
 .joinBtn {
-    width: 20%;
+    width: 120%;
     display: inline;
     float: right;
     margin: unset;
@@ -181,18 +182,18 @@ border:0.5px solid lightgrey;
 	color: #ffc312;
 }
 #terms{
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	color: #898989;
 	font-size: 12px;
 }
 .modalText{
 	font-size: 16px;
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	color: #555555;
 	margin: 5%;
 }
 .footerText{
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	color: #898989;
 	font-size: 16px;
 }
@@ -209,7 +210,7 @@ border:0.5px solid lightgrey;
 }
 .madeby{
 	color: #898989;
-	font-family: Tahoma;
+	font-family: 'Montserrat',sans-serif;
 	font-size: 12px;
 }
 .madeBy font{
