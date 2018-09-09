@@ -1,5 +1,15 @@
 body{
 	font-family: 'Montserrat',sans-serif;
+	overflow-x: hidden;
+	font-size: 14px;
+	background-image: url("images/munnar.jpg");
+	background-size: cover;
+}
+.joinForm{
+	width: 90%;
+	background-color: #ffffff;
+	left:5%;
+	padding: 2%;
 }
 .linkBtn{
 	border: none;
@@ -13,10 +23,38 @@ body{
 	cursor: pointer;
 	color: #ffc312;
 }
-
+.heading{
+	font-family: 'Montserrat',sans-serif;
+	font-weight: bold;
+	margin: 0;
+}
+.confirmBtn{
+	position: absolute;
+	right: -18%;
+	height: 100%;
+}
 .topButtons{
 	width:100%; 
 	padding-bottom: 1%;
+}
+.price{
+	position: absolute;
+	text-align: center;
+	margin: auto;
+}
+.totalCost{
+	font-size: 18px;
+	color: #44bd32;
+	clear: both;
+	font-weight: 500;
+	width: 100%;
+	margin-bottom: 0%;
+}
+.tnc{
+	font-size: 12px;
+	color: #898989;
+	clear: both;
+	width: 100%;
 }
 .yellowBtn{
 	width: 90%;
@@ -29,8 +67,6 @@ body{
 	font-family: 'Montserrat',sans-serif;
 	font-size: 16px;
 	border:none;
-	/*position: relative;
-	left: 5%;*/
 }
 .yellowBtn:hover{
 	cursor: pointer;
@@ -43,7 +79,8 @@ body{
 	color: #ffc312;
 	z-index:2;
 	position: absolute;
-	right: 0%;
+	right: 5%;
+	font-weight: 500;
 }
 .form-group{
 	position: relative;
@@ -54,6 +91,7 @@ body{
 .bottomBtn{
 	z-index: 1;
 	margin-bottom: 2%;
+	right: 0%;
 }
 .delBtn
 {
