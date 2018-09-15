@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2018 at 05:34 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Sep 15, 2018 at 02:28 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -120,6 +120,17 @@ CREATE TABLE `trip_group` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `trip_location`
+--
+
+CREATE TABLE `trip_location` (
+  `tripId` varchar(10) NOT NULL,
+  `locations` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -185,6 +196,12 @@ ALTER TABLE `trip_group`
   ADD PRIMARY KEY (`Location`,`TripGroup`);
 
 --
+-- Indexes for table `trip_location`
+--
+ALTER TABLE `trip_location`
+  ADD KEY `triploc` (`tripId`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -225,6 +242,12 @@ ALTER TABLE `trip`
 --
 ALTER TABLE `trip_group`
   ADD CONSTRAINT `trip_group_ibfk_1` FOREIGN KEY (`Location`) REFERENCES `recommendation` (`Location`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `trip_location`
+--
+ALTER TABLE `trip_location`
+  ADD CONSTRAINT `triploc` FOREIGN KEY (`tripId`) REFERENCES `trip` (`TripId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
