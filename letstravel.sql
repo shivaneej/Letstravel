@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2018 at 02:28 PM
+-- Generation Time: Sep 15, 2018 at 02:37 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -57,6 +57,53 @@ CREATE TABLE `get_recommendation` (
   `AgeGroup` varchar(10) NOT NULL,
   `TripGroup` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotels`
+--
+
+CREATE TABLE `hotels` (
+  `Hotel Name` varchar(22) DEFAULT NULL,
+  `Rating` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hotels`
+--
+
+INSERT INTO `hotels` (`Hotel Name`, `Rating`) VALUES
+('Amarvilas', 5),
+('The Lalit', 5),
+('Grand Hyatt ', 5),
+('The Renaissance', 5),
+('JW Marriott', 5),
+('The Oberoi', 5),
+('The Taj', 5),
+('The Leela Palace', 5),
+('Ritz Carlton', 5),
+('The Roseate', 5),
+('Trident', 5),
+('The Tamara', 5),
+('Vivanta', 5),
+('Le Meridian', 5),
+('Hotel de l\'Orient', 5),
+('Four Seasons Hotel', 3),
+('The Westin Garden City', 3),
+('Fairmont', 3),
+('Park Hyatt', 3),
+('Moevenpick', 3),
+('Taj Exotica', 3),
+('Wildflower Hall', 3),
+('AmanBagh Resort', 3),
+('Orange Country Resort', 3),
+('Kohinoor', 3),
+('Hotel Le Grande', 3),
+('Regal Enclave', 3),
+('Mapple Hermitage', 3),
+('The Oriental Residency', 3),
+('Tunga International', 3);
 
 -- --------------------------------------------------------
 
