@@ -218,3 +218,45 @@ border:0.5px solid lightgrey;
 .madeBy font{
 	color: #ffc312;
 }
+
+
+
+@media only screen and (max-width: 600px)
+{
+	.center-container
+	{
+		width:90%;
+		overflow-x: hidden;
+	}
+	.formWindow
+	{
+		width:100%; 
+		padding: 3% 1%;
+	}
+	.label span, .labelInvert span
+	{
+		display: none;
+	}
+	.label,.labelInvert
+	{
+		margin: 10%;
+		margin-bottom: 12%;
+		width: 100%;
+		left:-25%;
+		position: relative;  
+	}
+	.forgotPasswd
+	{
+		margin-right: 12%; 
+	}
+	.formbg
+	{
+		background-image: url("images/FormBg.jpg");
+		background-size: cover; 
+		overflow-x: hidden;
+	}
+	input:not(.yellowBtn)
+	{
+		padding: 6px;
+	}
+}
