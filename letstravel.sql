@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2018 at 02:37 PM
+-- Generation Time: Sep 16, 2018 at 10:27 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -191,6 +191,15 @@ CREATE TABLE `user` (
   `Rate` tinyint(1) UNSIGNED NOT NULL,
   `Review` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`FirstName`, `LastName`, `Email`, `Password`, `Mobile`, `City`, `Rate`, `Review`) VALUES
+('Grusha', 'Dharod', 'grusha.d@somaiya.edu', 'grusha', 1234567890, '', 0, ''),
+('Shivanee', 'Jaiswal', 'shivanee.j@somaiya.edu', '12345', 8097806372, '', 0, ''),
+('Vicky', 'Daiya', 'vicky.daiya@somaiya.edu', 'vicky', 9876543210, '', 0, '');
 
 --
 -- Indexes for dumped tables

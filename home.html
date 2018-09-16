@@ -33,21 +33,21 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="in_nav">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Hi, Name
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Edit Profile</a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="logout.php" name="logout_link">Logout</a>
                     </div>
                 </li>
-                <!--<li class="nav-item">
-                    <a class="nav-link" href="{{ url('/login') }}">Login</a>
+                <li class="nav-item" id="outl_nav">
+                    <a class="nav-link" href="userlogin.html">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/register') }}">Sign Up</a> 
-                </li>-->
+                <li class="nav-item" id="outr_nav">
+                    <a class="nav-link" href="register.html">Sign Up</a> 
+                </li>
             </ul>
         </div>
     </nav>
@@ -231,7 +231,7 @@
            
       			</div>
       			<div class="modal-footer">
-        			<a href="join.html"><button type="button" class="yellowBtn joinBtn">Join Now</button></a>
+        			<a href="join.php"><button type="button" class="yellowBtn joinBtn">Join Now</button></a>
       			</div>
     		</div>
   		</div>
@@ -273,6 +273,21 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+<script type="text/javascript">
+  window.onload=function(){
+    if(document.URL == "http://localhost/Letstravel/home.html?status=loggedin")
+    {
+      document.getElementById('in_nav').style.display = "block";
+      document.getElementById('outl_nav').style.display = "none";
+      document.getElementById('outr_nav').style.display = "none";
+    }
+    else
+    {
+      document.getElementById('in_nav').style.display = "none";
+      document.getElementById('outl_nav').style.display = "block";
+      document.getElementById('outr_nav').style.display = "block";
+    }
+  }
+</script>
 </body>
 </html>
