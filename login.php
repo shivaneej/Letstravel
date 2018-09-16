@@ -6,7 +6,7 @@ if(isset($_POST['loginbtn']))
     $username = 'root';
     $password = '';
     $db='letstravel';
-   /* $conn = mysqli_connect($servername,$username,$password,$db);
+    $conn = mysqli_connect($servername,$username,$password,$db);
 
     if (!$conn) 
         {
@@ -14,7 +14,7 @@ if(isset($_POST['loginbtn']))
         }
         $email=$_POST['userEmail'];
     	$p1=$_POST['userPassword'];
-    	$sql = "SELECT * FROM user WHERE Email='".$email."' AND Password='".$p1"'";
+    	$sql = "SELECT * FROM user WHERE Email='".$email."' AND Password='".$p1."'";
     	$result = mysqli_query($conn,$sql);
 		if(mysqli_num_rows($result)==1)
 		{
@@ -26,15 +26,15 @@ if(isset($_POST['loginbtn']))
 		}
 		else
 		{
-		
-		}*/
-	if($_POST['userEmail']=='shivanee.j@somaiya.edu' && $_POST['userPassword']=='12345')
+			header("location:userlogin.html");
+		}
+	/*if($_POST['userEmail']=='shivanee.j@somaiya.edu' && $_POST['userPassword']=='12345')
 	{	session_start();
 		$_SESSION['user_email']=$_POST['userEmail'];
 		$_SESSION['user_password']=$_POST['userPassword'];
 		$_SESSION['status']="loggedin";
 		header("location:home.html?status=loggedin");
-	}
+	}*/
 }
 
 
