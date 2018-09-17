@@ -20,23 +20,15 @@ if(isset($_POST['loginbtn']))
 		{
 			session_start();
 			$_SESSION['user_email']=$_POST['userEmail'];
-			$_SESSION['user_password']=$_POST['userPassword'];
+			$_SESSION['user_password']=$_POST['userPassword'];			
 			$_SESSION['status']="loggedin";
-			header("location:home.html?status=loggedin");	
+			header("location:home.php?status=loggedin");	
 		}
 		else
 		{
-			header("location:userlogin.html");
-		}
-	/*if($_POST['userEmail']=='shivanee.j@somaiya.edu' && $_POST['userPassword']=='12345')
-	{	session_start();
-		$_SESSION['user_email']=$_POST['userEmail'];
-		$_SESSION['user_password']=$_POST['userPassword'];
-		$_SESSION['status']="loggedin";
-		header("location:home.html?status=loggedin");
-	}*/
-}
-
-
-
+		    header("location:userlogin.html");?>
+    		<script type='text/javascript'>alert('User does not exist');</script>
+    		<?php        
+		}	
+ }
 ?>
