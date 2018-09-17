@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,27 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown" id="in_nav">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Hi, Name
+                      Hi, <?php  
+                             $servername = 'localhost';
+    						 $username = 'root';
+    						 $password = '';
+     						 $db='letstravel';
+    						 $conn = mysqli_connect($servername,$username,$password,$db);
+    						if (!$conn) 	
+        					{			
+            					die("Connection failed: " . mysqli_connect_error());
+        					}
+                            session_start();
+                            if($_SESSION['status']=='loggedin')
+                            {                            	
+                            	$email=$_SESSION['user_email'];
+                                $sql="SELECT FirstName FROM user WHERE Email='".$email."'";
+                                $fname = mysqli_query($conn,$sql);                                
+                                while ($row=$fname->fetch_assoc()) {                            	
+                            	echo $row['FirstName'];
+                              }
+                            }                         
+                            ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Edit Profile</a>
@@ -275,7 +296,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript">
   window.onload=function(){
-    if(document.URL == "http://localhost/Letstravel/home.html?status=loggedin")
+    if(document.URL == "http://localhost/letstravel-master/home.php?status=loggedin")
     {
       document.getElementById('in_nav').style.display = "block";
       document.getElementById('outl_nav').style.display = "none";
@@ -288,6 +309,10 @@
       document.getElementById('outr_nav').style.display = "block";
     }
   }
+
+
 </script>
 </body>
 </html>
+
+
