@@ -11,6 +11,7 @@ if($_SESSION['status']=='loggedin')
   <title>Letstravel</title>
   <link rel="shortcut icon" href="images/favicon.png">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
   <!--Bootstrap CSS-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet">
@@ -30,7 +31,7 @@ if($_SESSION['status']=='loggedin')
           <a class="nav-link" href="home.php?status=loggedin">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="home.php#Upcoming">Upcoming Trips</a>
+          <a class="nav-link" href="home.php?status=loggedin#Upcoming">Upcoming Trips</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#Upcoming">FAQ</a>

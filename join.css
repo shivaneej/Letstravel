@@ -2,6 +2,8 @@ body{
 	font-family: 'Montserrat',sans-serif;
 	overflow-x: hidden;
 	font-size: 14px;
+}
+.bg{
 	background-image: url("images/munnar.jpg");
 	background-size: cover;
 }
@@ -128,3 +130,12 @@ body{
 .secondaryBtn:hover{
 	cursor: pointer;
 }
+
+@media only screen and (max-width: 600px){
+	.bg{
+		background-image: url("images/bg.jpg");
+		background-size: cover;
+		width: 50%;
+	}
+}
+
