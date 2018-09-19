@@ -50,15 +50,14 @@ if($_SESSION['status']=='loggedin')
         					{			
             					die("Connection failed: " . mysqli_connect_error());
         					}                            
-                            if($_SESSION['status']=='loggedin')
-                            {                            	
+                                                        	
                             	$email=$_SESSION['user_email'];
                                 $sql="SELECT FirstName FROM user WHERE Email='".$email."'";
                                 $fname = mysqli_query($conn,$sql);                                
                                 while ($row=$fname->fetch_assoc()) {                            	
                             	echo $row['FirstName'];
                               }
-                            }                         
+                                                     
                             ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -87,16 +86,37 @@ if($_SESSION['status']=='loggedin')
           <th scope="col">Gender</th>
           <th scope="col">Contact</th>
           <th scope="col">Aadhar Number</th>
-          <th scope="col"><button class="linkBtn"><a href="join.html" class="linkBtn">Clear</a></button></th>
+          <th scope="col"><input type="reset" value="Clear" class="linkBtn"></th>
         </tr>
       </thead>
       <tbody>
-        <td>Mayank</td>
-        <td>Dagar</td>
-        <td>27</td>
-        <td>male</td>
-        <td>9821123456</td>
-        <td>1982671234321232</td>
+        <td><?php                            
+                              
+                                $sql="SELECT FirstName FROM user WHERE Email='".$email."'";
+                                $fname = mysqli_query($conn,$sql);                                
+                                while ($row=$fname->fetch_assoc()) {                              
+                              echo "<input type='text' value='".$row['FirstName']."'>";
+                              }
+                                  ?></td>
+        <td><?php                            
+                             
+                                $sql="SELECT LastName FROM user WHERE Email='".$email."'";
+                                $lname = mysqli_query($conn,$sql);                                
+                                while ($row=$lname->fetch_assoc()) {                              
+                              echo "<input type='text' value='".$row['LastName']."'>";
+                              }
+                                  ?></td>
+        <td><input type='number' min='1'></td>
+        <td><select><option>Select</option><option>Male</option><option>Female</option></select></td>
+        <td><?php                            
+                             
+                                $sql="SELECT Mobile FROM user WHERE Email='".$email."'";
+                                $mobile = mysqli_query($conn,$sql);                                
+                                while ($row=$mobile->fetch_assoc()) {                              
+                              echo "<input type='number' value='".$row['Mobile']."'>";
+                              }
+                                  ?></td>
+        <td><input type='number' maxlength='16'></td>
         <td><button onclick='delRow(this)' class="delBtn"><i class='fa fa-trash' aria-hidden='true'></i></button></td>
       </tbody>
     </table>
@@ -187,6 +207,10 @@ if($_SESSION['status']=='loggedin')
 
 
 <script>
+  window.onload=function(){
+    
+     document.getElementById('addbtn').style.display = "none";
+    }
 function tablerows(){
   var count = document.getElementById('Pcount').value;
   var j = parseInt(count);
@@ -203,12 +227,13 @@ function tablerows(){
     firstname.innerHTML="<input type='text'>";
     lastname.innerHTML="<input type='text'>";
     age.innerHTML = "<input type='number' min='1'>";
-    gender.innerHTML = "<select><option>Male</option><option>Female</option></select>";
+    gender.innerHTML = "<select><option>Select</option><option>Male</option><option>Female</option></select>";
     contact.innerHTML = "<input type='number' size='10'>";
     aadhar.innerHTML = "<input type='number' maxlength='16'>";
     deleteRow.innerHTML = "<button onclick='delRow(this)' class='delBtn'><i class='fa fa-trash' aria-hidden='true'></i></button>";
     document.getElementById("iniPCount").style.display = "none";
     document.getElementById("Pcount").disabled = "true";
+    document.getElementById("addbtn").style.display="inline";
     
   }
 }
@@ -224,7 +249,7 @@ function tablerows(){
     firstname1.innerHTML="<input type='text'>";
     lastname1.innerHTML="<input type='text'>";
     age1.innerHTML = "<input type='number' min='1'>";
-    gender1.innerHTML = "<select><option>Male</option><option>Female</option></select>";
+    gender1.innerHTML = "<select><option>Select</option><option>Male</option><option>Female</option></select>";
     contact1.innerHTML = "<input type='number' size='10'>";
     aadhar1.innerHTML = "<input type='number' max='9999999999999999'>";
     deleteRow1.innerHTML = "<button onclick='delRow(this)' class='delBtn'><i class='fa fa-trash' aria-hidden='true'></i></button>";
@@ -235,6 +260,9 @@ function tablerows(){
   function delRow(r) {
     var i = r.parentNode.parentNode.rowIndex;
     document.getElementById("passengertable").deleteRow(i);
+    var cnt =  document.getElementById("Pcount").value;
+   var newcnt = parseInt(cnt)-1;
+  document.getElementById("Pcount").value = newcnt;
 }
     
 </script>
@@ -246,5 +274,6 @@ else
 {
   header("location:userlogin.html"); 
 }
+mysqli_close($conn);
 ?>
 
