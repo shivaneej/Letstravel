@@ -93,3 +93,73 @@ a.footerText{
     top:10%;
     left:5%;
 }
+
+@media only screen and (max-width: 600px)
+{
+    body
+    {
+        font-size: 12px;
+    }
+    #Home
+    {
+        position: relative;
+        margin-top:13%;
+        width: 104%;
+    }
+    .survey
+    {
+        height: 20vh;
+    }
+    .surveyText
+    {
+        clear: both;
+        position: absolute;
+        width: 90%;
+        text-align: center;
+    }
+    .surveyBtn
+    {
+        clear: both; 
+        width: 100%;
+        margin-top: 20%;
+    }
+    .surveyBtn .yellowBtn
+    {
+        width: 50%;
+        margin-left: 20%;
+        padding: 2px;
+    }
+    #Upcoming
+    {
+        margin: 10% 0%;
+    }
+    .header
+    {
+        margin-bottom: 10%;
+    }
+    .viewAllBtn
+    {
+        width: 40%;
+        margin-right: 0%;
+        height: auto;
+    }
+    .viewAllBtn .secondaryBtn
+    {
+        padding: 2px;
+        width: 70%;
+        margin-right: 15%;
+        margin-top: 2%;
+        right: 0%;
+        bottom: 0%;
+        float: right;
+    }
+    .card
+    {
+        margin-bottom: 10%;
+        margin-left: 10%;
+    }
+    .social-icon
+    {
+        font-size: 20px;
+    }
+}
