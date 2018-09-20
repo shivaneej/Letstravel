@@ -1,0 +1,195 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+label
+{
+    font-weight: 400;
+}
+.delBtn
+{
+    width: 40%;
+    margin-right: 5%;
+}
+.delBtn:hover
+{
+    background-color: #ff3f34;
+}
+/* The Modal (background) */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid #888;
+    width: 40%;
+    font-family: 'Montserrat', sans-serif;
+}
+.modal-title
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+/* The Close Button */
+.close {
+    color: #111111;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.closeBtn
+{
+    background-color: unset;
+    border: none;
+    float: right;
+    margin-top: -5%;
+}
+.ModBtn{
+    margin: auto;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #ffc312;
+    color: white;
+    font-family: 'Montserrat',sans-serif;
+    border:none;
+}
+.ModBtn:hover{
+    cursor: pointer;
+}
+.modal-footer {
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+#bar {    
+    background-color: #111111;
+    color: white;
+    padding:0.4%;
+    /*height: 20%;*/
+}
+#up{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 24px;
+    margin-top: 0.5%;
+    padding-left: 25px;
+}
+#logout{
+    float: right;
+    margin-right: 5%;
+    text-decoration:none;
+    color: #eaeaea; 
+}
+#logout:hover
+{
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+}
+#log{
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+#cardsRow1,#cardsRow2,#cardsRow3{
+    margin:3%;
+    /*border: solid;*/
+}
+.card {
+    border-radius: 2px;
+    margin-bottom: 10%;
+}
+.container {
+    padding: 2px 16px;
+}
+.modal-img
+{
+    width: 100%;
+}
+.card-text,.card-title
+{
+    color: #555555;
+    font-family: 'Montserrat', sans-serif;
+}
+.createCard
+{
+    border: 1px solid #eaeaea;
+}
+.top, .container
+{
+    width: 100%;
+    background-color: #fafafa;
+}
+.add
+{
+    font-size: 84px;
+    color: #cacaca;
+    margin-left: 35%;
+    margin-bottom: 25%;
+    margin-top: 25%;
+}
+.container .card-title
+{
+    margin-left: 18%;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: -11%;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 5rem;
+    padding: .5rem 0;
+    font-size: 1rem;
+    text-align: left;
+    color: #555555;
+    background-color: #fafafa;
+    background-clip: padding-box;
+    border: 1px solid #fafafa;
+    border-radius: .25rem;
+}
+.createBtn
+{
+    width: 70%;
+    margin-right: 20%;
+}
+.createBtn:hover
+{
+    background-color: #44bd32;
+}
+input.upload
+{
+    color: #555555;
+    width: 100%;
+}
+.input-group-addon
+{
+    height: 10%;
+}
+.info
+{
+    font-size: 10px;
+    font-weight: 100;
+    color: #ff3f34;
+}
