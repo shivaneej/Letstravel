@@ -20,7 +20,7 @@
     	if($p1===$p2)
     	{
     		$check = "SELECT Email FROM user where Email='$email'";
-        	$result = mysqli_query($conn, $sql);
+        	$result = mysqli_query($conn, $check);
 			if (mysqli_num_rows($result) > 0) 
         	{
     			echo "<script type='text/javascript'>alert('User already exists! Please login to continue.'); window.location='userlogin.html'</script>";
