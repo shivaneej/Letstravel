@@ -66,10 +66,10 @@ if(isset($_POST['create'])){
   		move_uploaded_file($thumbnail['tmp_name'], $fileDestTn);
   		$tnStatus=1;
   	}else{
-  		echo "<script type='text/javascript'>alert('Error uploading image file!');</script>";
+  		echo "<script type='text/javascript'>alert('Error uploading image file!');window.location='dashboard.php?status=loggedin';</script>";
   	}
   }else{
-  	echo "<script type='text/javascript'>alert('You cannot upload files of this type!');</script>";
+  	echo "<script type='text/javascript'>alert('You cannot upload files of this type!');window.location='dashboard.php?status=loggedin';</script>";
   }
 
   if(in_array($itActualExt, $allowedIt)){
@@ -81,10 +81,10 @@ if(isset($_POST['create'])){
   		$itStatus=1;
   		
   	}else{
-  		echo "<script type='text/javascript'>alert('Error uploading text file!');</script>";
+  		echo "<script type='text/javascript'>alert('Error uploading text file!');window.location='dashboard.php?status=loggedin';</script>";
   	}
   }else{
-  	echo "You cannot upload files of this type!";
+  	echo "<script type='text/javascript'>alert('You cannot upload files of this type!');window.location='dashboard.php?status=loggedin';</script>";
   }
 
   if($tnStatus==1 && $itStatus==1){

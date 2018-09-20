@@ -175,7 +175,6 @@ if($_SESSION['status']=='loggedin')
           	<img class="modal-img" src="images/couple.jpg">
            	<div class="modalText">
            		<label><b>Date:</b> 26th December, 2018 to 4th January, 2019</label><br>
-           		<label><b>Description:</b> Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis piros Afros. </label><br>
            		<a href="download.txt" download class="downloadFile">Download itinerary</a><br>
            		<label><b>Base Price:</b> ₹8000</label><br>
            		<label><b>Tour Guide Name:</b> Vicky Daiya</label><br>
