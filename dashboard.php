@@ -19,9 +19,9 @@ if($_SESSION['status']=='loggedin')
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.png">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="override.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="admin.css">
+    <link rel="stylesheet" type="text/css" href="css/override.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -335,7 +335,7 @@ if($_SESSION['status']=='loggedin')
 	});
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="location.js"></script>
+<script type="text/javascript" src="css/location.js"></script>
 </body>
 </html>
 <?php
