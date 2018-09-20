@@ -93,7 +93,24 @@ a.footerText{
     top:10%;
     left:5%;
 }
-
+.viewBtn
+{
+    background-color: unset;
+    border: none;
+    color: #ffc312;
+    padding: 0px;
+    font-weight: 500;
+    text-align: right
+}
+.viewBtn:focus, .viewBtn:hover
+{
+    cursor: pointer;
+    font-weight: bolder;
+}
+.downloadFile:hover
+{
+    text-decoration: none;
+}
 @media only screen and (max-width: 600px)
 {
     body

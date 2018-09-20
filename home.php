@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/override.css">
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="-10">
+<body data-spy="scroll" data-target=".navbar" data-offset="10">
 	<!--navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand heading" href="#">Letstravel</a>
@@ -125,138 +124,89 @@
 		</div>
 	</div> <!--home ends-->
 
-	<!--upcoming section-->
-	<div class="sectionHeader" id="Upcoming">
-		<div class="header">
-			<div class="headingText">Upcoming Trips</div>
-			<div class="viewAllBtn"><button class="secondaryBtn" type="button" data-toggle="collapse" data-target="#AllTrips" aria-expanded="false" aria-controls="AllTrips">View All</button></div>
-		</div>
-		<div id ="cards" class="row mx-auto">
-			<a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-				<div class="col-sm-3">
-					<div class="card" style="width: 18rem;">
-  						<img class="card-img-top" src="images/couple.jpg" alt="Card image cap">
-  						<div class="card-body">
-    						<h5 class="card-title">LOCATION</h5>
-    						<p class="card-text">Starting from ₹8000</p>
-  						</div>
-					</div>
-				</div>
-			</a>
-      <a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-				<div class="col-sm-3">
-					<div class="card" style="width: 18rem;">
-	  					<img class="card-img-top" src="images/bg.jpg"Card image cap">
-	  					<div class="card-body">
-	    					<h5 class="card-title">LOCATION</h5>
-	    					<p class="card-text">Starting from ₹8000</p>
-	  					</div>
-					</div>
-				</div>
-      </a>
-      <a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-				<div class="col-sm-3">
-					<div  id ="tripCard" class="card" style="width: 18rem;">
-	  					<img class="card-img-top" src="images/bg.jpg"Card image cap">
-	  					<div class="card-body">
-	    					<h5 class="card-title">LOCATION</h5>
-	    					<p class="card-text">Starting from ₹6500</p>
-	  					</div>
-					</div>
-				</div>
-      </a>
-      <a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-			  <div class="col-sm-3">
-					<div  id ="tripCard" class="card" style="width: 18rem;">
-	  					<img class="card-img-top" src="images/bg.jpg" alt="Card image cap">
-	  					<div class="card-body">
-	    					<h5 class="card-title">LOCATION</h5>
-	    					<p class="card-text">Starting from ₹8000</p>
-	  					</div>
-					</div>
-				</div>
-      </a>
-		</div>
-		<div class="collapse" id="AllTrips">
-		<div id ="cards" class="row mx-auto">
-      <a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-			<div class="col-sm-3">
-				<div class="card" style="width: 18rem;">
-  					<img class="card-img-top" src="images/bg.jpg" alt="Card image cap">
-  					<div class="card-body">
-    					<h5 class="card-title">LOCATION</h5>
-    					<p class="card-text">Starting from ₹8000</p>
-  					</div>
-				</div>
-			</div>
-    </a>
-    <a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-			<div class="col-sm-3">
-				<div class="card" style="width: 18rem;">
-  					<img class="card-img-top" src="images/bg.jpg"Card image cap">
-  					<div class="card-body">
-    					<h5 class="card-title">LOCATION</h5>
-    					<p class="card-text">Starting from ₹8000</p>
-  					</div>
-				</div>
-			</div>
-    </a>
-    <a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-			<div class="col-sm-3">
-				<div  id ="tripCard" class="card" style="width: 18rem;">
-  					<img class="card-img-top" src="images/bg.jpg"Card image cap">
-  					<div class="card-body">
-    					<h5 class="card-title">LOCATION</h5>
-    					<p class="card-text">Starting from ₹6500</p>
-  					</div>
-				</div>
-			</div>
-    </a>
-    <a href="#" data-toggle="modal" data-target="#tripDetails" class="toggle">
-		  <div class="col-sm-3">
-				<div  id ="tripCard" class="card" style="width: 18rem;">
-  					<img class="card-img-top" src="images/bg.jpg" alt="Card image cap">
-  					<div class="card-body">
-    					<h5 class="card-title">LOCATION</h5>
-    					<p class="card-text">Starting from ₹8000</p>
-  					</div>
-				</div>
-			</div>
-    </a>
+<?php
 
-		</div>
-	</div>
-
+  echo '<!--upcoming section-->
+  <div class="sectionHeader" id="Upcoming">
+    <div class="header">
+      <div class="headingText">Upcoming Trips</div>
+      <div class="viewAllBtn"><button class="secondaryBtn" type="button" data-toggle="collapse" data-target="#AllTrips" aria-expanded="false" aria-controls="AllTrips">View All</button></div>
     </div>
+    <div id ="cards" class="row mx-auto">';
 
-    <!--modal-->
-    <div class="modal fade" id="tripDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  		<div class="modal-dialog" role="document">
-    		<div class="modal-content">
-      			<div class="modal-header">
-        			<h5 class="modal-title">Location</h5>
-        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          				<span aria-hidden="true">&times;</span>
-        			</button>
-      			</div>
-      			<div class="modal-body" id="carouselimg">
-          			<img class="img-fluid" src="images/couple.jpg">
-           			<div class="modalText">
-           				<label><b>Date:</b> 26th December, 2018 to 4th January, 2019</label><br>
-           				<label><b>Description:</b> Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis piros Afros. </label><br>
-           				<a href="download.txt" download class="downloadFile">Download itinerary</a><br>
-           				<label><b>Price:</b> ₹21000*</label>
-           				<p id="terms">* The charges mentioned above includes only the base price of the trip for the mentioned location, exclusive of accommodation and travel charges from your city. </p>
-       				</div>
+  $sql="SELECT * FROM trip";
+  $result = mysqli_query($conn,$sql);
+  $rows = mysqli_num_rows($result);
+  for($i=0;$i<$rows;$i++)
+  {
+    $tripID = mysqli_fetch_assoc($result);
+    $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'";';
+    $result2 = mysqli_query($conn,$sql2);
+    $rows2 = mysqli_num_rows($result2);
+    $temp =  mysqli_fetch_assoc($result2);
+    $locs = $temp["locations"];
+    for($j=1;$j<$rows2;$j++)
+    {
+      $temp =  mysqli_fetch_assoc($result2);
+      $locs=$locs." - ".$temp["locations"];
+    }
+    echo 
+        '<div class="col-sm-3">
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="uploads/'.$tripID["Image"].'"Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">'.$locs.'</h5>
+                <p class="card-text">Starting from ₹'.$tripID["BasePrice"].'</p>
+                <form action="home.php" method="post">
+                 <a href="#" data-toggle="modal" data-target="#tripDetails'.$i.'" class="toggle" class="viewBtn"><input type="submit" name="trip_sel" value="View Details" class="viewBtn"> </a>
+                </form>
+              </div>
+          </div>
+        </div>'
+      ;
+
+      echo '<!--modal-->
+    <div class="modal fade" id="tripDetails'.$i.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">'.$locs.'</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="carouselimg">
+                <img class="img-fluid" src="uploads/'.$tripID["Image"].'">
+                <div class="modalText">
+                  <label><b>Date:</b> '.$tripID["StartDate"].' to '.$tripID["EndDate"].'<br>
+                  <a href="uploads/'.$tripID["Itinerary"].'" download class="downloadFile">Download itinerary</a><br>
+                  <label><b>Price:</b> ₹'.$tripID["BasePrice"].'*</label>
+                  <p id="terms">* The charges mentioned above includes only the base price of the trip for the mentioned location, exclusive of accommodation and travel charges from your city. </p>
+              </div>
            
-      			</div>
-      			<div class="modal-footer">
-        			<a href="join.php"><button type="button" class="yellowBtn joinBtn">Join Now</button></a>
-      			</div>
-    		</div>
-  		</div>
-	</div>
-    <!--modal ends-->
+            </div>
+            <div class="modal-footer">
+              <a href="join.php"><button type="button" class="yellowBtn joinBtn">Join Now</button></a>
+            </div>
+        </div>
+      </div>
+  </div>
+    <!--modal ends-->'; 
+
+  }
+
+  echo  '</div></div>';
+
+  
+      
+    
+    
+  
+  
+  ?>
+    
+  
+    
 	
     <!--footer-->
     	<footer class="page-footer font-small pt-4">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2018 at 12:31 PM
+-- Generation Time: Sep 20, 2018 at 07:35 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -160,6 +160,14 @@ CREATE TABLE `trip` (
   `GuideContact` bigint(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `trip`
+--
+
+INSERT INTO `trip` (`TripId`, `Image`, `BasePrice`, `Status`, `Itinerary`, `StartDate`, `EndDate`, `CreatedBy`, `GuideName`, `GuideContact`) VALUES
+('2018K', 'k.png', 10000, 1, 'k.docx', '2018-09-02', '2018-09-05', 'shivaneej02@gmail.com', 'grusha', 1111111111),
+('2018RNJ', 'rnj.png', 20000, 1, 'rnj.docx', '2018-09-13', '2018-09-28', 'shivaneej02@gmail.com', 'shivanee', 1234567890);
+
 -- --------------------------------------------------------
 
 --
@@ -181,6 +189,16 @@ CREATE TABLE `trip_location` (
   `tripId` varchar(10) NOT NULL,
   `locations` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trip_location`
+--
+
+INSERT INTO `trip_location` (`tripId`, `locations`) VALUES
+('2018K', 'Kerala'),
+('2018RNJ', 'Rishikesh'),
+('2018RNJ', 'Nainital'),
+('2018RNJ', 'Jim Corbett');
 
 -- --------------------------------------------------------
 
