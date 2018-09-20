@@ -3,7 +3,7 @@
 $servername = 'localhost';
     $username = 'root';
     $password = '';
-    $db='Letstravel';
+    $db='letstravel';
     $conn = mysqli_connect($servername,$username,$password,$db);
     
     if (!$conn) 
@@ -43,7 +43,7 @@ if(isset($_POST['create'])){
   $itActualExt=strtolower(end($itExt));
 
   $allowedTn=array('jpg','jpeg','png');
-  $allowedIt=array('pdf','txt');
+  $allowedIt=array('pdf','txt','docx','doc');
 
   $itStatus=0;
   $tnStatus=0;
@@ -66,10 +66,10 @@ if(isset($_POST['create'])){
   		move_uploaded_file($thumbnail['tmp_name'], $fileDestTn);
   		$tnStatus=1;
   	}else{
-  		echo "Error uploading image file!";
+  		echo "<script type='text/javascript'>alert('Error uploading image file!');</script>";
   	}
   }else{
-  	echo "You cannot upload files of this type!";
+  	echo "<script type='text/javascript'>alert('You cannot upload files of this type!');</script>";
   }
 
   if(in_array($itActualExt, $allowedIt)){
@@ -81,14 +81,14 @@ if(isset($_POST['create'])){
   		$itStatus=1;
   		
   	}else{
-  		echo "Error uploading text file!";
+  		echo "<script type='text/javascript'>alert('Error uploading text file!');</script>";
   	}
   }else{
   	echo "You cannot upload files of this type!";
   }
 
   if($tnStatus==1 && $itStatus==1){
-  	header("Location: admindashboard.html?uploadsuccess");
+  	header("Location: dashboard.php?uploadsuccess");
   }
 
 }

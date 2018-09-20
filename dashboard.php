@@ -86,28 +86,28 @@ if($_SESSION['status']=='loggedin')
     		<label class="col-sm-4">Start Date</label>
     		<!--<i class="material-icons md-36 col-sm-1">date_range</i>-->
     		<div class="col-sm-5">                      
-                <form>                  
+                                 
                     <div class='input-group date' id='datepicker'>
                         <input type='text' class="form-control" name="startDate" />
                         <span class="input-group-addon">
                         	<span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>                  
-                </form>         
+                       
     		</div>    
   		</div>
   		<div class="form-group row">
     		<label class="col-sm-4">End Date</label>
     		<!--<i class="material-icons md-36 col-sm-1">date_range</i>-->
     		<div class="col-sm-5">      
-                <form>                  
+                                  
                     <div class='input-group date' id='datepicker1'>
                         <input type='text' class="form-control" name="endDate" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>                  
-                </form>
+                
             </div>    
         </div>
         <div class="form-group row">
@@ -298,7 +298,7 @@ if($_SESSION['status']=='loggedin')
   {
     $('#datepicker').datepicker(
     {
-      format: "dd/mm/yyyy",
+      format: "yyyy/mm/dd",
       autoclose: true,
       //todayHighlight: true,
       showOtherMonths: true,
@@ -313,7 +313,7 @@ if($_SESSION['status']=='loggedin')
   {
 	  $('#datepicker1').datepicker(
     {
-      format: "dd/mm/yyyy",
+      format: "yyyy/mm/dd",
       autoclose: true,
       //todayHighlight: true,
       showOtherMonths: true,
