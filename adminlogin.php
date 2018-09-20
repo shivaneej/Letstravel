@@ -26,9 +26,7 @@ if(isset($_POST['adminLogin']))
 		}
 		else
 		{
-		    header("location:adminlogin.html");
-    		echo "<script type='text/javascript'>alert('Invalid Login Credentials');</script>";
-                   
+    		echo "<script type='text/javascript'>alert('Invalid Login Credentials'); window.location='adminlogin.html'</script>";           
 		}	
  }
 ?>

@@ -26,9 +26,7 @@ if(isset($_POST['loginbtn']))
 		}
 		else
 		{
-		    header("location:userlogin.html");
-    		echo "<script type='text/javascript'>alert('User does not exist');</script>";
-                   
+		    echo "<script type='text/javascript'>alert('Invalid Login Credentials'); window.location='userlogin.html'</script>";          
 		}	
  }
 ?>

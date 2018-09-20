@@ -23,17 +23,14 @@
         	$result = mysqli_query($conn, $sql);
 			if (mysqli_num_rows($result) > 0) 
         	{
-         		$message="User already exists!";
-    			echo "<script type='text/javascript'>alert('$message');</script>";
-                //header( "Location:userlogin.html" );
+    			echo "<script type='text/javascript'>alert('User already exists! Please login to continue.'); window.location='userlogin.html'</script>";
         	}
         	else
         	{
     	 		$sql = "INSERT INTO user (FirstName,LastName, Email, Password, Mobile) VALUES ('".$fname."','".$lname."','".$email."','".$p1."',".$mob.")";
     	 		if ($conn->query($sql) === TRUE) 
 				{
-    				echo "Registration Successful!";
-                    header( "Location:home.html" );
+                    echo "<script type='text/javascript'>alert('Registration Successful!'); window.location='home.php'</script>";
 
 				} 
 				else 
@@ -44,9 +41,7 @@
     	}
     	else
     	{
-    		$message="Passwords do not match.";
-    		echo "<script type='text/javascript'>alert('$message');</script>";
-            //header( "Location:register.html" );
+            echo "<script type='text/javascript'>alert('Passwords do not match.'); window.location='register.html'</script>";
     	}
     }
 
