@@ -56,41 +56,36 @@ if($_SESSION['status']=='loggedin')
     		<label><h3 style="font-family: 'Montserrat', sans-serif;">Create trip</h3></label>
     	</div>
     	<div class="form-group row">
-    		<label class="col-sm-4">Select Start Location</label>
-    		<!--<i class="material-icons md-36 col-sm-1">location_on</i>-->
-    		<div class="col-sm-6">      
-      			<select name="start" class="label ui selection fluid dropdown" >
-			      <option value="">Location</option>
-			      <option value="1">Delhi</option>
-			      <option value="2">Mumbai</option>
-			      <option value="3">Agra</option>
-			      <option value="4">Chennai</option>
-    			</select>
-    		</div>    
-  		</div>
-    	<div class="form-group row">
     		<label class="col-sm-4">Select Location</label>
     		<!--<i class="material-icons md-36 col-sm-1">location_on</i>-->
     		<div class="col-sm-6">      
-      			<select name="locs" multiple="" class="label ui selection fluid dropdown" >
+      			<select name="locs" multiple="" class="label ui selection fluid search dropdown" id="tripLocs" onChange="getLocs();">
 			      <option value="">Locations</option>
-			      <option value="1">Delhi</option>
-			      <option value="2">Mumbai</option>
-			      <option value="3">Agra</option>
-			      <option value="4">Chennai</option>
-			      <option value="5">Delhi</option>
-			      <option value="6">Mumbai</option>
-			      <option value="7">Agra</option>
-			      <option value="8">Chennai</option>
+			      <option value="Delhi">Delhi</option>
+			      <option value="Mumbai">Mumbai</option>
+			      <option value="Agra">Agra</option>
+			      <option value="Chennai">Chennai</option>
+			      <option value="Kolkata">Kolkata</option>
+			      <option value="Goa">Goa</option>
+			      <option value="Pune">Pune</option>
+			      <option value="Bangalore">Bangalore</option>
     			</select>
     		</div>    
   		</div>
-  		<div class="form-group row">
-  			<label class="col-sm-4"></label>
-  			<div class="col-sm-6 terms"> 
-  				<p class="info">Select upto 4 locations only, excluding the start location. </p>
-  			</div>
-  		</div>
+      <div class="form-group row">
+        <label class="col-sm-4">Select Start Location</label>
+        <!--<i class="material-icons md-36 col-sm-1">location_on</i>-->
+        <div class="col-sm-6">      
+            <select name="start" class="label ui selection fluid dropdown" id="start">
+            <option value="" disabled selected>Start Location</option>
+            <!--<option value="">Location</option>
+            <option value="1">Delhi</option>
+            <option value="2">Mumbai</option>
+            <option value="3">Agra</option>
+            <option value="4">Chennai</option>-->
+          </select>
+        </div>    
+      </div>
   		<div class="form-group row">
     		<label class="col-sm-4">Start Date</label>
     		<!--<i class="material-icons md-36 col-sm-1">date_range</i>-->
@@ -278,56 +273,69 @@ if($_SESSION['status']=='loggedin')
 	var tripModal = document.getElementById('viewTripModal');
 	var span = document.getElementsByClassName("close")[0];
 	var closeBtn = document.getElementById("closeTrip");
-	function openModal(){
+	function openModal()
+  {
 	    tripModal.style.display="block";
 	}
-	function openCreateTripModal(){
+	function openCreateTripModal()
+  {
 	    modal.style.display="block";
 	}
-	closeBtn.onclick=function(){
+	closeBtn.onclick=function()
+  {
 	    tripModal.style.display="none";
 	}
-	span.onclick = function() {
+	span.onclick = function() 
+  {
 	    modal.style.display = "none";    
 	}
-	window.onclick = function(event) {
-	    if (event.target == modal||event.target==tripModal) {
+	window.onclick = function(event) 
+  {
+	    if (event.target == modal||event.target==tripModal) 
+      {
 	        modal.style.display = "none";
 	        tripModal.style.display="none";
 	    }
 	}
-	$(function () {
-	            $('#datepicker').datepicker({
-	                format: "dd/mm/yyyy",
-	                autoclose: true,
-	                //todayHighlight: true,
-	                showOtherMonths: true,
-	                selectOtherMonths: true,
-	                autoclose: true,
-	                changeMonth: true,
-	                changeYear: true,
-	                orientation: "button"
-	            });
-	        });
-	$(function () {
-	            $('#datepicker1').datepicker({
-	                format: "dd/mm/yyyy",
-	                autoclose: true,
-	                //todayHighlight: true,
-	                showOtherMonths: true,
-	                selectOtherMonths: true,
-	                autoclose: true,
-	                changeMonth: true,
-	                changeYear: true,
-	                orientation: "button"
-	            });
-	        });
-	        $(function(){
-	        $('.label.ui.dropdown')
-	  .dropdown();
-	    });
+	$(function () 
+  {
+    $('#datepicker').datepicker(
+    {
+      format: "dd/mm/yyyy",
+      autoclose: true,
+      //todayHighlight: true,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      autoclose: true,
+      changeMonth: true,
+      changeYear: true,
+      orientation: "button"
+    });
+	});
+	$(function () 
+  {
+	  $('#datepicker1').datepicker(
+    {
+      format: "dd/mm/yyyy",
+      autoclose: true,
+      //todayHighlight: true,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      autoclose: true,
+      changeMonth: true,
+      changeYear: true,
+      orientation: "button"
+	   });
+	});
+  $(function()
+  {
+    $('.label.ui.dropdown').dropdown({
+      maxSelections: 5
+  });
+	});
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="location.js"></script>
 </body>
 </html>
 <?php
@@ -338,4 +346,5 @@ else
 }
 //mysqli_close($conn);
 ?>
+
 

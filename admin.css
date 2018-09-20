@@ -40,6 +40,7 @@ label
     border: 1px solid #888;
     width: 40%;
     font-family: 'Montserrat', sans-serif;
+    top: -10%;
 }
 .modal-title
 {
@@ -175,10 +176,4 @@ input.upload
 .input-group-addon
 {
     height: 10%;
-}
-.info
-{
-    font-size: 10px;
-    font-weight: 100;
-    color: #ff3f34;
 }
