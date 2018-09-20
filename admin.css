@@ -66,18 +66,6 @@ label
     float: right;
     margin-top: -5%;
 }
-.ModBtn{
-    margin: auto;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: #ffc312;
-    color: white;
-    font-family: 'Montserrat',sans-serif;
-    border:none;
-}
-.ModBtn:hover{
-    cursor: pointer;
-}
 .modal-footer {
     padding: 10px;
     text-align: right;
@@ -97,8 +85,9 @@ label
 }
 #logout{
     float: right;
-    margin-right: 5%;
-    text-decoration:none;
+    margin-right: -10%;
+    background-color: unset;
+    border: none;
     color: #eaeaea; 
 }
 #logout:hover
