@@ -19,7 +19,7 @@ if($_SESSION['status']=='loggedin')
    <link rel="stylesheet" type="text/css" href="override.css">
   <link rel="stylesheet" type="text/css" href="join.css">
 </head>
-<body>
+<body class="bg">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand heading" href="home.php">Letstravel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@ if($_SESSION['status']=='loggedin')
     </button>
     <div id="navbarNavDropdown" class="navbar-collapse collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="home.php?status=loggedin">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">

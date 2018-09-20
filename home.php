@@ -14,7 +14,7 @@
 
 	<link rel="stylesheet" type="text/css" href="override.css">
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="-10">
 	<!--navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand heading" href="#">Letstravel</a>
@@ -23,14 +23,14 @@
         </button>
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#Home">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#Upcoming">Upcoming Trips</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="#Upcoming">FAQ</a>
+                    <a class="nav-link" href="www.google.com">FAQ</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -312,6 +312,8 @@
 
 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="animations.js"></script>
 </body>
 </html>
 
