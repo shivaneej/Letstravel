@@ -53,7 +53,7 @@ if($_SESSION['status']=='loggedin')
 	<div class="modal-content">
     <form action="upload.php" method="POST" enctype="multipart/form-data">
     	<div style="margin-bottom: 6%;">
-    		<span class="close">&times;</span>
+    		<span class="close" id="closeCreateTrip">&times;</span>
     		<label><h3 style="font-family: 'Montserrat', sans-serif;">Create trip</h3></label>
     	</div>
     	<div class="form-group row">
@@ -161,127 +161,127 @@ if($_SESSION['status']=='loggedin')
 </div>
 <!--modal ends-->
 
-<!-- Trip Modal-->
-<div id="viewTripModal" class="modal">
+
+<div>
+<div class="row mx-auto" id="cardsRow2">
+
+  <!--create trip card-->
+    <a href="#createTripModal" onclick="javascript:openCreateTripModal();">
+        <div class="col-sm-3">
+          <div class="createCard">
+            <div class="top">
+              <i class="material-icons add">add_circle_outline</i>
+            </div>
+          <div class="container">
+            <h4 class="card-title"><b>CREATE A NEW TRIP</b></h4> 
+          </div>
+        </div>
+      </div>
+  </a>
+
+
+<?php 
+
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$db='letstravel';
+$conn = mysqli_connect($servername,$username,$password,$db);
+if (!$conn)   
+{     
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+ $sql="SELECT * FROM trip";
+  $result = mysqli_query($conn,$sql);
+  $rows = mysqli_num_rows($result);
+  for($i=0;$i<$rows;$i++)
+  {
+    $tripID = mysqli_fetch_assoc($result);
+    $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'";';
+    $result2 = mysqli_query($conn,$sql2);
+    $rows2 = mysqli_num_rows($result2);
+    $temp =  mysqli_fetch_assoc($result2);
+    $locs = $temp["locations"];
+    for($j=1;$j<$rows2;$j++)
+    {
+      $temp =  mysqli_fetch_assoc($result2);
+      $locs=$locs." - ".$temp["locations"];
+    }
+    ?>
+
+    <a href="#TripModal<?php echo $i;?>" onclick="javascript:openModal('<?php echo $i; ?>');" id="viewTripModal<?php echo $i;?>">
+        <div class="col-sm-3">
+          <div class="card">
+            <img class="card-img-top" src="uploads/<?php echo $tripID['Image']; ?>" alt="Avatar" style="width:100%">
+          <div class="card-body">
+            <h4 class="card-title"><b><?php echo $locs; ?></b></h4> 
+            <p class="card-text">Starting from </p>
+          </div> 
+          </div>
+      </div>
+  </a>
+        
+
+  <!-- Trip Modal-->
+<div id="TripModal<?php echo $i; ?>" class="modal">
   <!--Modal content -->
-	<div class="modal-content">
-    	<div class="modal-header">
-        	<h4 class="modal-title">Location</h4>
-        	<button type="button" data-dismiss="modal" aria-label="Close" class="closeBtn">
-          		<span aria-hidden="true" class="close" id="closeTrip">&times;</span>
-        	</button>
-      	</div>   
-       	<div class="modal-body" id="carouselimg">
-          	<img class="modal-img" src="images/couple.jpg">
-           	<div class="modalText">
-           		<label><b>Date:</b> 26th December, 2018 to 4th January, 2019</label><br>
-           		<a href="download.txt" download class="downloadFile">Download itinerary</a><br>
-           		<label><b>Base Price:</b> ₹8000</label><br>
-           		<label><b>Tour Guide Name:</b> Vicky Daiya</label><br>
-           		<label><b>Tour guide Contact:</b> 9876543210</label>
-       		</div>   
-      	</div>
-      	<div class="modal-footer">
-   			<a href="#"><button type="button" class="yellowBtn delBtn">Delete Trip</button></a>
-      	</div>                                   
+  <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title"><?php echo $locs; ?></h4>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="closeBtn">
+              <span aria-hidden="true" class="close" id="closeTrip<?php echo $i; ?>">&times;</span>
+          </button>
+        </div>   
+        <div class="modal-body" id="carouselimg">
+            <img class="modal-img" src="uploads/<?php echo $tripID['Image']; ?>">
+            <div class="modalText">
+              <label><b>Date:</b><?php echo $tripID['StartDate']; ?> to <?php echo $tripID['EndDate']; ?></label><br>
+              <a href="uploads/<?php echo $tripID['Itinerary']; ?>" download class="downloadFile">Download itinerary</a><br>
+              <label><b>Base Price:</b> ₹<?php echo $tripID['BasePrice']; ?></label><br>
+              <label><b>Tour Guide Name:</b><?php echo $tripID["GuideName"]; ?></label><br>
+              <label><b>Tour guide Contact:</b><?php echo $tripID["GuideContact"]; ?></label>
+          </div>   
+        </div>
+        <div class="modal-footer">
+        <a href="#"><button type="button" class="yellowBtn delBtn">Delete Trip</button></a>
+        </div>                                   
     </div>
 </div>
 <!--modal ends-->
 
-<!--trip cards-->
-<div class="row" id="cardsRow1">
-    <a href="#viewTripModal" onclick="javascript:openModal();">
-        <div class="col-sm-3">
-        	<div class="card">
-    			<img class="card-img-top" src="images/couple.jpg" alt="Avatar" style="width:100%">
-  				<div class="card-body">
-	    			<h4 class="card-title"><b>LOCATION</b></h4> 
-    				<p class="card-text">Starting from New Delhi</p> 
-  				</div> 
-  			</div>
-    	</div>
-	</a>
-   <a href="#viewTripModal" onclick="javascript:openModal();">
-        <div class="col-sm-3">
-        	<div class="card">
-        		<img class="card-img-top" src="images/couple.jpg" alt="Avatar" style="width:100%">
-  				<div class="card-body">
-    				<h4 class="card-title"><b>LOCATION</b></h4> 
-    				<p class="card-text">Starting from Cochin</p> 
-  				</div> 
-        	</div>
-    	</div>
-	</a>
-    <a href="#viewTripModal" onclick="javascript:openModal();">
-        <div class="col-sm-3">
-        	<div class="card">
-        		<img class="card-img-top" src="images/couple.jpg" alt="Avatar" style="width:100%">
-	  			<div class="card-body">
-	    			<h4 class="card-title"><b>LOCATION</b></h4> 
-	    			<p class="card-text">Starting from Agra</p> 
-	  			</div> 
-        	</div>
-    	</div>
-	</a>
-    <a href="#viewTripModal" onclick="javascript:openModal();">
-        <div class="col-sm-3">
-        	<div class="card">
-        		<img class="card-img-top" src="images/couple.jpg" alt="Avatar" style="width:100%">
-	  			<div class="card-body">
-	    			<h4 class="card-title"><b>LOCATION</b></h4> 
-	    			<p class="card-text">Starting from Mumbai</p> 
-	  			</div>
-        	</div> 
-    	</div>
-	</a>
+<?php 
+}
+
+?>
+</div>
 </div>
 
-<div class="row" id="cardsRow2">
-    <a href="#viewTripModal" onclick="javascript:openModal();">
-        <div class="col-sm-3">
-        	<div class="card">
-        		<img class="card-img-top" src="images/couple.jpg" alt="Avatar" style="width:100%">
-	  			<div class="card-body">
-	    			<h4 class="card-title"><b>LOCATION</b></h4> 
-	    			<p class="card-text">Starting from Kolkata</p> 
-	  			</div> 
-        	</div>
-    	</div>
-	</a>
 
-    <!--create trip card-->
-    <a href="#createTripModal" onclick="javascript:openCreateTripModal();">
-        <div class="col-sm-3">
-        	<div class="createCard">
-        		<div class="top">
-        			<i class="material-icons add">add_circle_outline</i>
-        		</div>
-  				<div class="container">
-    				<h4 class="card-title"><b>CREATE A NEW TRIP</b></h4> 
-  				</div>
-  			</div>
-    	</div>
-	</a>
-</div>
 
 <script>
+
+  var tripModal;
+  
 	var modal = document.getElementById('createTripModal');
-	var tripModal = document.getElementById('viewTripModal');
-	var span = document.getElementsByClassName("close")[0];
-	var closeBtn = document.getElementById("closeTrip");
-	function openModal()
-  {
-	    tripModal.style.display="block";
-	}
+	var span = document.getElementById("closeCreateTrip");
+	var closeBtn="";
+	
 	function openCreateTripModal()
   {
 	    modal.style.display="block";
 	}
-	closeBtn.onclick=function()
+  function openModal(val)
   {
-	    tripModal.style.display="none";
-	}
-	span.onclick = function() 
+    tripModal = document.getElementById("TripModal"+val);
+    tripModal.style.display = "block";
+    closeBtn=document.getElementById("closeTrip"+val);
+    closeBtn.onclick=function()
+      {   
+        tripModal.style.display="none";
+      }
+  }
+		span.onclick = function() 
   {
 	    modal.style.display = "none";    
 	}
@@ -329,6 +329,7 @@ if($_SESSION['status']=='loggedin')
       maxSelections: 5
   });
 	});
+  
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="js/location.js"></script>
@@ -342,5 +343,3 @@ else
 }
 //mysqli_close($conn);
 ?>
-
-
