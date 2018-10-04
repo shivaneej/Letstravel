@@ -60,7 +60,7 @@ if($_SESSION['status']=='loggedin')
     		<label class="col-sm-4">Select Location</label>
     		<!--<i class="material-icons md-36 col-sm-1">location_on</i>-->
     		<div class="col-sm-6">      
-      			<select name="locs" multiple="" class="label ui selection fluid search dropdown" id="tripLocs" onChange="getLocs();">
+      			<select name="locs[]" multiple="" class="label ui selection fluid search dropdown" id="tripLocs" onChange="getLocs();">
 			      <option value="">Locations</option>
 			      <option value="Delhi">Delhi</option>
 			      <option value="Mumbai">Mumbai</option>
