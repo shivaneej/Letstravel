@@ -199,6 +199,7 @@ if (!$conn)
   {
     $tripID = mysqli_fetch_assoc($result);
     $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'";';
+    $sql3='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'" AND startLoc=1;';
     $result2 = mysqli_query($conn,$sql2);
     $rows2 = mysqli_num_rows($result2);
     $temp =  mysqli_fetch_assoc($result2);
@@ -208,6 +209,10 @@ if (!$conn)
       $temp =  mysqli_fetch_assoc($result2);
       $locs=$locs." - ".$temp["locations"];
     }
+    $result3 = mysqli_query($conn,$sql3);
+    $start = mysqli_fetch_assoc($result3);
+    $rows3 = mysqli_num_rows($result3);
+    $sloc = $start["locations"];
     ?>
 
     <a href="#TripModal<?php echo $i;?>" onclick="javascript:openModal('<?php echo $i; ?>');" id="viewTripModal<?php echo $i;?>">
@@ -216,7 +221,7 @@ if (!$conn)
             <img class="card-img-top" src="uploads/<?php echo $tripID['Image']; ?>" alt="Avatar" style="width:100%">
           <div class="card-body">
             <h4 class="card-title"><b><?php echo $locs; ?></b></h4> 
-            <p class="card-text">Starting from </p>
+            <p class="card-text">Starting from <?php echo $sloc; ?></p>
           </div> 
           </div>
       </div>

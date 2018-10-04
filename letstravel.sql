@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2018 at 07:35 PM
+-- Generation Time: Oct 04, 2018 at 08:39 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -165,8 +165,9 @@ CREATE TABLE `trip` (
 --
 
 INSERT INTO `trip` (`TripId`, `Image`, `BasePrice`, `Status`, `Itinerary`, `StartDate`, `EndDate`, `CreatedBy`, `GuideName`, `GuideContact`) VALUES
-('2018K', 'k.png', 10000, 1, 'k.docx', '2018-09-02', '2018-09-05', 'shivaneej02@gmail.com', 'grusha', 1111111111),
-('2018RNJ', 'rnj.png', 20000, 1, 'rnj.docx', '2018-09-13', '2018-09-28', 'shivaneej02@gmail.com', 'shivanee', 1234567890);
+('2018RNJ', 'rnj.png', 20000, 1, 'rnj.docx', '2018-09-13', '2018-09-28', 'shivaneej02@gmail.com', 'shivanee', 1234567890),
+('Mumbai.jpg', 'Mumbai.jpg', 15000, 1, 'Mumbai.docx', '2018-10-02', '2018-10-11', 'shivaneej02@gmail.com', 'Sneh', 12345),
+('taj.jpg', 'taj.jpg', 7600, 1, 'Delhi.docx', '2018-10-16', '2018-10-20', 'shivaneej02@gmail.com', 'Neelay Gosar', 9876543210);
 
 -- --------------------------------------------------------
 
@@ -187,18 +188,23 @@ CREATE TABLE `trip_group` (
 
 CREATE TABLE `trip_location` (
   `tripId` varchar(10) NOT NULL,
-  `locations` varchar(20) NOT NULL
+  `locations` varchar(20) NOT NULL,
+  `startLoc` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `trip_location`
 --
 
-INSERT INTO `trip_location` (`tripId`, `locations`) VALUES
-('2018K', 'Kerala'),
-('2018RNJ', 'Rishikesh'),
-('2018RNJ', 'Nainital'),
-('2018RNJ', 'Jim Corbett');
+INSERT INTO `trip_location` (`tripId`, `locations`, `startLoc`) VALUES
+('2018RNJ', 'Rishikesh', 1),
+('2018RNJ', 'Nainital', 0),
+('2018RNJ', 'Jim Corbett', 0),
+('Mumbai.jpg', 'Mumbai', 1),
+('Mumbai.jpg', 'Goa', 0),
+('Mumbai.jpg', 'Pune', 0),
+('taj.jpg', 'Delhi', 0),
+('taj.jpg', 'Agra', 1);
 
 -- --------------------------------------------------------
 
@@ -223,6 +229,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`FirstName`, `LastName`, `Email`, `Password`, `Mobile`, `City`, `Rate`, `Review`) VALUES
 ('Grusha', 'Dharod', 'grusha.d@somaiya.edu', 'grusha', 1234567890, '', 0, ''),
+('Shivanee', 'Jaiswal', 'jaiswalshivanee0211@yahoo.in', 'shiv', 892329, '', 0, ''),
 ('Shivanee', 'Jaiswal', 'shivanee.j@somaiya.edu', '12345', 8097806372, '', 0, ''),
 ('Vicky', 'Daiya', 'vicky.daiya@somaiya.edu', 'vicky', 9876543210, '', 0, '');
 
