@@ -29,11 +29,48 @@ if(isset($_POST['create'])){
 
   $tnName=$thumbnail['name'];
   $itName=$itinerary['name'];
+  //$multipleLocs=$_POST['locs'];
+  $startLoc=$_POST['start'];
 
-  //echo $startDate." ".$endDate." ".$basePrice." ".$tgName." ".$tgCont." ".$status." ".$createdBy." ".$tripId;
+
+  /*foreach ($_POST['locs'] as $multipleLocs) {
+    echo $multipleLocs;
+    # code...
+  }
+  echo $startDate." ".$endDate." ".$basePrice." ".$tgName." ".$tgCont." ".$status." ".$createdBy." ".$tripId." ".$startLoc;*/
 
 
+  $start=0;
 	$sql="INSERT INTO trip (TripId,Image,BasePrice,Status,Itinerary,StartDate,EndDate,CreatedBy,GuideName,GuideContact) VALUES ('".$tripId."','".$tnName."',".$basePrice.",".$status.",'".$itName."','".$startDate."','".$endDate."','".$createdBy."','".$tgName."','".$tgCont."')";
+
+  if ($conn->query($sql) === TRUE) 
+        {           
+                    //echo "inserted";
+        } 
+        else 
+        {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        
+
+  foreach ($_POST['locs'] as $multipleLocs) {
+    if($multipleLocs==$startLoc){
+      $start=1;
+    }else{$start=0;}
+    $sql2="INSERT INTO trip_location(tripId,locations,startLoc) VALUES ('".$tripId."','".$multipleLocs."',".$start.")";
+    if ($conn->query($sql2) === TRUE) 
+        {           
+                    //echo "inserted";
+          echo "<script type='text/javascript'>alert('hello');</script>";
+        } 
+        else 
+        {
+            echo "Error: " . $sql2 . "<br>" . $conn->error;
+        }
+  }
+
+  
 
 
   $tnExt=explode('.', $tnName);
@@ -47,16 +84,6 @@ if(isset($_POST['create'])){
 
   $itStatus=0;
   $tnStatus=0;
-
-       if ($conn->query($sql) === TRUE) 
-				{    				
-                    //echo "inserted";
-				} 
-				else 
-				{
-    				echo "Error: " . $sql . "<br>" . $conn->error;
-				}
-
 
   if(in_array($tnActualExt, $allowedTn)){
   	if($thumbnail['error']===0){
