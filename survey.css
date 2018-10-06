@@ -1,0 +1,87 @@
+.parallax
+{
+	background-image: url("images/survey.jpg");
+  	width: 100vw;
+  	height: 80vh;
+  	overflow-x: hidden;
+	position: absolute;
+	margin-top: 2%;
+	opacity: 0.75;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+body{
+	overflow-x: hidden;
+	background-color: #111111;
+}
+input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
+.caption
+{
+	width: 80%;
+	margin-top: 20%;
+	color: red;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding: 2% 1%;
+	background-color: #000000;
+}
+.caption span
+{
+	color: white;
+	z-index: 1;
+	font-size: 20px;
+}
+
+.surveyForm
+{
+	position: absolute;
+	color: #fafafa;
+	width: 80%;
+	margin: 45% 10%;
+	padding: 3%;
+	/*background-color: #fafafa;*/
+	background-image: url("images/ll.png");
+	background-size: cover;
+	margin-bottom: 10%;
+}
+
+.form-group
+{
+	margin: 5%;
+}
+.yellowBtn{
+	width: 50%;
+	margin: 3% 20%;
+	height: 5%;
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #ffc312;
+	color: white;
+	font-family: 'Montserrat',sans-serif;
+	font-size: 16px;
+	border:none;
+	position: relative;
+	left: 5%;
+	margin-bottom: -3%;
+}
+.yellowBtn:hover{
+	cursor: pointer;
+}
+
+input[type=checkbox]:checked {
+    content: "\2713";
+    color: #ffc312;
+    text-align: center;
+}
+@media only screen and (max-device-width: 1024px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}

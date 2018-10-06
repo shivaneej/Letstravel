@@ -120,7 +120,7 @@
 
 		<div class="survey">
 			<div class="surveyText"> Can't decide where to go on your holiday? Take a quick survey and get instant recommendation of places in India to visit!</div>
-			<div class="surveyBtn"><button class="yellowBtn">Take Survey</button></div>
+			<div class="surveyBtn"><a href="survey.php"><button class="yellowBtn">Take Survey</button></a></div>
 		</div>
 	</div> <!--home ends-->
 
