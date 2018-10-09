@@ -126,10 +126,21 @@ if($_SESSION['status']=='loggedin')
       <div class="col-xl-9">
         <select class="form-control selectloc" id="Locations">
           <option selected="" disabled="">Select Location</option>
-          <option>Mumbai</option>
+          <!--<option>Mumbai</option>
           <option>Delhi</option>
           <option>Bangalore</option>
-          <option>Kolkata</option>
+          <option>Kolkata</option>-->
+          <?php                            
+                              
+            $sql5="SELECT City FROM distance";
+            $city = mysqli_query($conn,$sql5);                                
+            while ($row5=$city->fetch_assoc()) 
+            {                              
+          		echo "<option value='".$row5['City']."'>".$row5['City']."</option>";
+          	}
+          ?>
+
+
         </select>
       </div>
     </div>

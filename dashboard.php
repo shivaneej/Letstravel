@@ -61,15 +61,33 @@ if($_SESSION['status']=='loggedin')
     		<!--<i class="material-icons md-36 col-sm-1">location_on</i>-->
     		<div class="col-sm-6">      
       			<select name="locs[]" multiple="" class="label ui selection fluid search dropdown" id="tripLocs" onChange="getLocs();">
-			      <option value="">Locations</option>
-			      <option value="Delhi">Delhi</option>
+			      <option value="">Select Locations</option>
+			      <!--option value="Delhi">Delhi</option>
 			      <option value="Mumbai">Mumbai</option>
 			      <option value="Agra">Agra</option>
 			      <option value="Chennai">Chennai</option>
 			      <option value="Kolkata">Kolkata</option>
 			      <option value="Goa">Goa</option>
 			      <option value="Pune">Pune</option>
-			      <option value="Bangalore">Bangalore</option>
+			      <option value="Bangalore">Bangalore</option>-->
+                              
+            <?php    
+            $servername = 'localhost';
+            $username = 'root';
+            $password = '';
+            $db='letstravel';
+            $conn = mysqli_connect($servername,$username,$password,$db);
+            if (!$conn)   
+            {     
+                die("Connection failed: " . mysqli_connect_error());
+            }                        
+            $sql5="SELECT Name FROM cities";
+            $city = mysqli_query($conn,$sql5);                                
+            while ($row5=$city->fetch_assoc()) 
+            {                              
+              echo "<option value='".$row5['Name']."'>".$row5['Name']."</option>";
+            }
+          ?>
     			</select>
     		</div>    
   		</div>
@@ -181,16 +199,6 @@ if($_SESSION['status']=='loggedin')
 
 
 <?php 
-
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-$db='letstravel';
-$conn = mysqli_connect($servername,$username,$password,$db);
-if (!$conn)   
-{     
-    die("Connection failed: " . mysqli_connect_error());
-}
 
  $sql="SELECT * FROM trip";
   $result = mysqli_query($conn,$sql);
