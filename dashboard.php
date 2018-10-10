@@ -200,13 +200,13 @@ if($_SESSION['status']=='loggedin')
 
 <?php 
 
- $sql="SELECT * FROM trip";
+ $sql="SELECT * FROM trip WHERE Status=1;";
   $result = mysqli_query($conn,$sql);
   $rows = mysqli_num_rows($result);
   for($i=0;$i<$rows;$i++)
   {
     $tripID = mysqli_fetch_assoc($result);
-    $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'";';
+    $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'"';
     $sql3='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'" AND startLoc=1;';
     $result2 = mysqli_query($conn,$sql2);
     $rows2 = mysqli_num_rows($result2);
@@ -257,7 +257,20 @@ if($_SESSION['status']=='loggedin')
           </div>   
         </div>
         <div class="modal-footer">
-        <a href="#"><button type="button" class="yellowBtn delBtn">Delete Trip</button></a>
+          <form action="#" method="POST" enctype="multipart/form-data">
+            <button type="submit" class="yellowBtn delBtn" value="<?php echo $tripID["TripId"];?>" name="deleteTrip">Delete Trip</button>
+            <!--<input type="submit" value="<?php //echo $tripID["TripId"];?>" class="yellowBtn delBtn" name="deleteTrip">-->
+          </form>
+          <?php
+            if(isset($_POST['deleteTrip']))
+            {
+                $tripDel = $_POST['deleteTrip'];
+                $sqlx = 'UPDATE trip set Status = 0 where tripId="'.$tripDel.'"';
+                $resultx = mysqli_query($conn,$sqlx);
+                if($resultx == True)
+                  echo "<script type='text/javascript'>alert('Trip Deleted Successfully'); window.location='dashboard.php'</script>";
+            }
+          ?>
         </div>                                   
     </div>
 </div>

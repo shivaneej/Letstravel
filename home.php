@@ -130,17 +130,21 @@
   <div class="sectionHeader" id="Upcoming">
     <div class="header">
       <div class="headingText">Upcoming Trips</div>
-      <div class="viewAllBtn"><button class="secondaryBtn" type="button" data-toggle="collapse" data-target="#AllTrips" aria-expanded="false" aria-controls="AllTrips">View All</button></div>
+      <div class="viewAllBtn"><button class="secondaryBtn" type="button" id="VABtn" data-toggle="collapse" data-target="#AllTrips" aria-expanded="false" aria-controls="AllTrips" onclick="javascript:toggleText();">View All</button></div>
     </div>
     <div id ="cards" class="row mx-auto">';
 
-  $sql="SELECT * FROM trip";
+  $sql="SELECT * FROM trip WHERE Status=1";
   $result = mysqli_query($conn,$sql);
   $rows = mysqli_num_rows($result);
-  for($i=0;$i<$rows;$i++)
+  if($rows<=4)
+  {  $limit = $rows;}
+  else
+  {  $limit = 4;}
+  for($i=0;$i<$limit;$i++)
   {
     $tripID = mysqli_fetch_assoc($result);
-    $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'";';
+    $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'"';
     $result2 = mysqli_query($conn,$sql2);
     $rows2 = mysqli_num_rows($result2);
     $temp =  mysqli_fetch_assoc($result2);
@@ -150,6 +154,7 @@
       $temp =  mysqli_fetch_assoc($result2);
       $locs=$locs." - ".$temp["locations"];
     }
+
     echo 
         '<div class="col-sm-3">
           <div class="card" style="width: 18rem;">
@@ -193,6 +198,69 @@
   </div>
     <!--modal ends-->'; 
 
+  }
+  if($rows>4)
+  {
+    echo '<div class="collapse" id="AllTrips">';
+    for($i=4;$i<$rows;$i++)
+  {
+    $tripID = mysqli_fetch_assoc($result);
+    $sql2='SELECT locations from trip_location where tripId="'.$tripID["TripId"].'";';
+    $result2 = mysqli_query($conn,$sql2);
+    $rows2 = mysqli_num_rows($result2);
+    $temp =  mysqli_fetch_assoc($result2);
+    $locs = $temp["locations"];
+    for($j=1;$j<$rows2;$j++)
+    {
+      $temp =  mysqli_fetch_assoc($result2);
+      $locs=$locs." - ".$temp["locations"];
+    }
+
+    echo 
+        '<div class="col-sm-3">
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="uploads/'.$tripID["Image"].'"Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">'.$locs.'</h5>
+                <p class="card-text">Starting from ₹'.$tripID["BasePrice"].'</p>
+                <form action="home.php" method="post">
+                 <a href="#" data-toggle="modal" data-target="#tripDetails'.$i.'" class="toggle" class="viewBtn"><input type="submit" name="trip_sel" value="View Details" class="viewBtn"> </a>
+                </form>
+              </div>
+          </div>
+        </div>'
+      ;
+
+      echo '<!--modal-->
+    <div class="modal fade" id="tripDetails'.$i.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">'.$locs.'</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="carouselimg">
+                <img class="img-fluid" src="uploads/'.$tripID["Image"].'">
+                <div class="modalText">
+                  <label><b>Date:</b> '.$tripID["StartDate"].' to '.$tripID["EndDate"].'<br>
+                  <a href="uploads/'.$tripID["Itinerary"].'" download class="downloadFile">Download itinerary</a><br>
+                  <label><b>Price:</b> ₹'.$tripID["BasePrice"].'*</label>
+                  <p id="terms">* The charges mentioned above includes only the base price of the trip for the mentioned location, exclusive of accommodation and travel charges from your city. </p>
+              </div>
+           
+            </div>
+            <div class="modal-footer">
+              <a href="join.php"><button type="button" class="yellowBtn joinBtn">Join Now</button></a>
+            </div>
+        </div>
+      </div>
+  </div>
+    <!--modal ends-->'; 
+
+  }
+      echo '</div>';
   }
 
   echo  '</div></div>';
@@ -259,6 +327,14 @@
     }
   }
 
+  function toggleText()
+  {
+    var but = document.getElementById("VABtn");
+    if(but.innerHTML=="View All")
+      but.innerHTML="Hide";
+    else if(but.innerHTML=="Hide")
+      but.innerHTML="View All";
+  }
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

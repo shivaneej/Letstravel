@@ -148,11 +148,11 @@ if($_SESSION['status']=='loggedin')
       <label for="accpref" class="col-xl-3 col-form-label">Accomodation preference</label>
       <div id="accpref" class="col-xl-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="accpref" id="3star" value="3star">
+          <input class="form-check-input" type="radio" name="accpref" id="3star" value="3star" onclick="javascript:compute(this.id);">
           <label class="form-check-label" for="3star">3-star</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="accpref" id="5star" value="5star">
+          <input class="form-check-input" type="radio" name="accpref" id="5star" value="5star" onclick="javascript:compute(this.id);">
           <label class="form-check-label" for="5star">5-star</label>
         </div>
       </div>
@@ -161,12 +161,12 @@ if($_SESSION['status']=='loggedin')
       <label for="mealpref" class="col-xl-3 col-form-label">Meal preference </label>
       <div id="mealpref" class="col-xl-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mealpref" id="veg" value="veg">
-          <label class="form-check-label" for="3star">Veg</label>
+          <input class="form-check-input" type="radio" name="mealpref" id="veg" value="veg" onclick="javascript:compute(this.id);">
+          <label class="form-check-label" for="veg">Veg</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mealpref" id="nonveg" value="nonveg">
-          <label class="form-check-label" for="5star">Non-Veg</label>
+          <input class="form-check-input" type="radio" name="mealpref" id="nonveg" value="nonveg" onclick="javascript:compute(this.id);">
+          <label class="form-check-label" for="nonveg">Non-Veg</label>
         </div>
       </div>
     </div>
@@ -189,10 +189,11 @@ if($_SESSION['status']=='loggedin')
     </div>
     <div class="form-group row price">
       <div class="totalCost">
-        <p style="padding: 0%; margin: 0;">Total cost ₹35000*</p>
+      	<!--+500 for non veg, +5000 for 5 star -->
+        <p id="total" style="padding: 0%; margin: 0;"></p>
       </div>
       <div class="tnc">
-        <p style="padding: 0%; margin: 0; margin-bottom: 1%;">*The above price is inclusive of travelling, accomodation, taxes and trip cost.</p>
+        <p id="tncText" style="padding: 0%; margin: 0; margin-bottom: 1%;">*The above price is inclusive of travelling, accomodation, taxes and trip cost.</p>
       </div>
     </div>
     <div class="form-group row">
@@ -222,6 +223,7 @@ if($_SESSION['status']=='loggedin')
   window.onload=function(){
     
      document.getElementById('addbtn').style.display = "none";
+     document.getElementById('tncText').style.display = "none";
     }
 function tablerows(){
   var count = document.getElementById('Pcount').value;
@@ -277,6 +279,22 @@ function tablerows(){
   document.getElementById("Pcount").value = newcnt;
 }
     
+ function compute(val)
+ {
+ 	var cost = 35000;
+ 	var x = 35000;
+ 	if(val == "veg")
+ 		cost = cost+0;
+ 	else if(val == "nonveg")
+ 		cost = cost + 500;
+ 	if(val== "3star")
+ 		cost = cost+0;
+ 	else if(val=="5star")
+ 		cost = cost + 5000;
+ 	var txt = "Total cost ₹" + cost +"*";
+ 	document.getElementById("total").innerHTML=txt;
+ 	document.getElementById('tncText').style.display = "block";
+ }
 </script>
 </body>
 </html>

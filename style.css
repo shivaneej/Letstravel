@@ -2,7 +2,7 @@
 light grey: #eaeaea (form text)
 dark grey: #555555 (for text)
 medium grey: #898989
-bluosh grey color: #2c3e50*/
+bluish grey color: #2c3e50*/
 .body{
 	margin: 0px;
     font-family: 'Montserrat', sans-serif;
@@ -31,7 +31,11 @@ bluosh grey color: #2c3e50*/
     position: relative;
 	
 }
-
+.adminForm
+{
+	background-image: url("images/rajasthan.jpg");
+	background-size: cover;
+}
 .formbg
 {
 	background-image: url("images/dark.jpg");
@@ -46,15 +50,11 @@ bluosh grey color: #2c3e50*/
 #userRegisterWindow{
 	background-color: rgba(0,0,0,0.2);
 }
-.label{
+.label, .labelInvert
+{
 	font-family: 'Montserrat',sans-serif;
 	font-size: 14px;
 	color: white;
-}
-.labelInvert{
-	font-family: 'Montserrat',sans-serif;
-	font-size: 14px;
-	color: #555555;
 }
 .formText{
 	color: #eaeaea;
