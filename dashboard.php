@@ -261,16 +261,6 @@ if($_SESSION['status']=='loggedin')
             <button type="submit" class="yellowBtn delBtn" value="<?php echo $tripID["TripId"];?>" name="deleteTrip">Delete Trip</button>
             <!--<input type="submit" value="<?php //echo $tripID["TripId"];?>" class="yellowBtn delBtn" name="deleteTrip">-->
           </form>
-          <?php
-            if(isset($_POST['deleteTrip']))
-            {
-                $tripDel = $_POST['deleteTrip'];
-                $sqlx = 'UPDATE trip set Status = 0 where tripId="'.$tripDel.'"';
-                $resultx = mysqli_query($conn,$sqlx);
-                if($resultx == True)
-                  echo "<script type='text/javascript'>alert('Trip Deleted Successfully'); window.location='dashboard.php'</script>";
-            }
-          ?>
         </div>                                   
     </div>
 </div>
@@ -279,6 +269,14 @@ if($_SESSION['status']=='loggedin')
 <?php 
 }
 
+if(isset($_POST['deleteTrip']))
+            {
+                $tripDel = $_POST['deleteTrip'];
+                $sqlx = 'UPDATE trip set Status = 0 where tripId="'.$tripDel.'"';
+                $resultx = mysqli_query($conn,$sqlx);
+                if($resultx == True)
+                  echo "<script type='text/javascript'>alert('Trip Deleted Successfully'); window.location='dashboard.php'</script>";
+            }
 ?>
 </div>
 </div>

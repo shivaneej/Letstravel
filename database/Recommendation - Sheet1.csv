@@ -1,0 +1,28 @@
+Location ,Link,Category,Group,Min Age,Max Age,Min Budget,Max Budget
+Agra,https://en.wikipedia.org/wiki/Agra,HS,F,0,0,5,10
+Agra,https://en.wikipedia.org/wiki/Agra,HS,C,0,0,5,10
+Amritsar,https://en.wikipedia.org/wiki/Amritsar,HS,F,0,0,3,6
+Andaman Nicobar,https://en.wikipedia.org/wiki/Andaman_and_Nicobar_Islands,BN,F,0,0,10,20
+Darjeeling,https://en.wikipedia.org/wiki/Darjeeling,BN,C,0,0,8,13
+Gir National Park,https://en.wikipedia.org/wiki/Gir_Forest_National_Park,AA,F,0,0,2,3
+Goa,https://en.wikipedia.org/wiki/Goa,AA,FR,0,0,5,7
+Goa,https://en.wikipedia.org/wiki/Goa,BN,FR,0,0,5,7
+Jim Corbett National Park,https://en.wikipedia.org/wiki/Jim_Corbett_National_Park,AA,F,0,0,1,3
+Ladakh,https://en.wikipedia.org/wiki/Ladakh,AA,FR,0,0,30,45
+Ladakh,https://en.wikipedia.org/wiki/Ladakh,BN,FR,0,0,30,45
+Leh,https://en.wikipedia.org/wiki/Leh,AA,FR,0,0,15,18
+Leh,https://en.wikipedia.org/wiki/Leh,BN,C,0,0,15,18
+Lonavla,https://en.wikipedia.org/wiki/Lonavla,BN,FR,0,0,4,7
+Manali,"https://en.wikipedia.org/wiki/Manali,_Himachal_Pradesh",AA,C,0,0,5,9
+Manali,"https://en.wikipedia.org/wiki/Manali,_Himachal_Pradesh",BN,F,0,0,5,9
+Mount Abu,https://en.wikipedia.org/wiki/Mount_Abu,BN,C,0,0,1,3
+Munnar,https://en.wikipedia.org/wiki/Munnar,BN,F,0,0,3,5
+Nainital,https://en.wikipedia.org/wiki/Nainital,BN,F,0,0,5,7
+New Delhi,https://en.wikipedia.org/wiki/New_Delhi,HS,F,0,0,3,5
+Ooty,https://en.wikipedia.org/wiki/Ooty,BN,F,0,0,3,6
+Rishikesh,https://en.wikipedia.org/wiki/Rishikesh,AA,F,0,0,3,7
+Rishikesh,https://en.wikipedia.org/wiki/Rishikesh,BN,FR,0,0,3,7
+Rishikesh,https://en.wikipedia.org/wiki/Rishikesh,HS,F,0,0,3,7
+Shimla,https://en.wikipedia.org/wiki/Shimla,BN,C,0,0,2,5
+Srinagar,https://en.wikipedia.org/wiki/Srinagar,BN,F,0,0,2,4
+Sunderbans,https://en.wikipedia.org/wiki/Sunderbans,BN,F,0,0,1,3

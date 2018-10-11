@@ -80,6 +80,74 @@ input[type=checkbox]:checked {
     color: #ffc312;
     text-align: center;
 }
+.header
+{
+	font-size: 24px;
+	text-align: center;
+	width: 100%;
+	position: relative;
+	margin-top: 5%;
+    margin-bottom: 2%;
+    color: #fafafa;
+}
+
+.tab
+{
+	width: 80%;
+	margin: auto;
+	height: 500px;
+	background-color: rgba(255,255,255,0.1);
+	padding: 5%;
+	overflow-y:scroll; 
+}
+.result
+{
+	display: flex;
+	height: auto;
+	margin: 5% 5%;
+
+}
+.result img
+{
+	width: 40%;
+	height: 30%;
+	float: left;
+}
+.info
+{
+	width: 55%;
+	height: auto;
+	float: left;
+	text-align: center;
+}
+
+.info h3
+{
+	color: #fafafa;
+}
+.info a
+{
+	color: #ffc312;
+	text-decoration: none;
+}
+.tab::-webkit-scrollbar-track
+{
+  border-radius: 5px;
+  background-color: #eaeaea;
+}
+
+.tab::-webkit-scrollbar
+{
+  height: 10px;
+  width: 10px;
+  background-color: #eaeaea;
+}
+
+.tab::-webkit-scrollbar-thumb
+{
+  background-color: #ffc312;
+  border-radius: 2px;
+}
 @media only screen and (max-device-width: 1024px) {
     .parallax {
         background-attachment: scroll;

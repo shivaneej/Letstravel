@@ -19,7 +19,7 @@ if($_SESSION['status']=='loggedin')
 	<link rel="stylesheet" type="text/css" href="override.css">
 	<link rel="stylesheet" type="text/css" href="survey.css">
 </head>
-<body>
+<body style="background-color: #000000;">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand heading" href="home.php?status=loggedin"><b>Letstravel</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,87 +70,92 @@ if($_SESSION['status']=='loggedin')
     </nav>
 
 
-    <!--header-->
-    <div class="parallax">
-  		<div class="caption">
-    		<span class="surveyText">Confused where to go for your holidays?<br> Answer the questions below and let us help you recommend places you might like!</span>
-  		</div>
-	</div>
+    <div class="header">
+        You could go to one of these places!
+    </div>
+    <!--recommendation tab-->
 
-    <!--header ends-->
+    <div class="tab">
+        <div class="tabContent">
+            
 
-    <!--form-->
-    <form class="surveyForm" method="post" action="result.php">
-	  	<div class="form-group category">
-	    	<label for="category">When I travel, I prefer...</label>
-	    	<div class="form-check">
-  				<input class="form-check-input" type="checkbox" id="cat_Heri" value="HS" name="category[]">
-  				<label class="form-check-label" for="cat_AA">Heritage Sites</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="cat_adv" value="AA" name="category[]">
-			  <label class="form-check-label" for="cat_adv">Activity and Adventure</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="cat_BN" value="BN" name="category[]">
-			  <label class="form-check-label" for="cat_BN">Beaches and Nature</label>
-			</div>
-	  	</div>
-	  	<div class="form-group budget">
-	    	<label for="budget">My Budget</label>
-	    	<div class="form-check">
-  				<input class="form-check-input" type="checkbox" id="bud1" value="1" name="budget[]">
-  				<label class="form-check-label" for="bud1">Less than ₹5000</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="bud2" value="2" name="budget[]">
-			  <label class="form-check-label" for="bud2">₹5000 - ₹20000</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="bud3" value="3" name="budget[]">
-			  <label class="form-check-label" for="bud3">₹20000 and above</label>
-			</div>
-		</div>
+    <?php    
+    $servername = 'localhost';
+    $username = 'root';
+    $password = '';
+    $db='letstravel';
+    $conn = mysqli_connect($servername,$username,$password,$db);
 
-		<div class="form-group accomGrp">
-	    	<label for="accomGrp">People Accompanying me are</label>
-	    	<div class="form-check">
-  				<input class="form-check-input" type="checkbox" id="friends" value="FR" name="group[]">
-  				<label class="form-check-label" for="friends">My Friends</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="family" value="F" name="group[]">
-			  <label class="form-check-label" for="family">My Family</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="partner" value="C" name="group[]">
-			  <label class="form-check-label" for="partner">My Partner</label>
-			</div>
-		</div>
+    if (!$conn) 
+        {
+            die("Connection failed: " . mysqli_connect_error());
+        }            
+    if(isset($_POST['GetResult']))
+    {
+        //category, budget, group, age_group
+        if(!empty($_POST['category']) || !empty($_POST['group']))
+        {
+            $inner = "";
+            $outer = "";
+            if(!empty($_POST['category']))
+            {
+                $inner = "'".$_POST['category'][0]."'";
 
-		<div class="form-group age">
-	    	<label for="age">Age Group</label>
-	    	<div class="form-check">
-  				<input class="form-check-input" type="checkbox" id="kids" value="1" name="age_group[]">
-  				<label class="form-check-label" for="kids">Less than 18</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="adults" value="2" name="age_group[]">
-			  <label class="form-check-label" for="adults">18 - 45</label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" id="senior" value="3" name="age_group[]">
-			  <label class="form-check-label" for="senior">45+</label>
-			</div>
-		</div>
+                for ($i=1; $i<sizeof($_POST['category']) ; $i++) 
+                { 
+                    $inner = $inner.",'".$_POST['category'][$i]."'";
+                }
+            }
+            if(!empty($_POST['group']))
+            {
+                $outer = "'".$_POST['group'][0]."'";
+                for ($i=1; $i<sizeof($_POST['group']) ; $i++) 
+                { 
+                    $outer = $outer.",'".$_POST['group'][$i]."'";
+                }
+            }
+            if($inner == "")
+                $sql = 'SELECT distinct Location, Link from recom_locs WHERE TripGroup IN ('.$outer.')';
+            else if($outer == "")
+                $sql = 'SELECT distinct Location, Link from recom_locs WHERE Category IN ('.$inner.')';
+            else
+                $sql = 'SELECT distinct Location, Link from recom_locs WHERE TripGroup IN ('.$outer.') AND Category IN ('.$inner.')';
+            //echo $sql;
+            $result = mysqli_query($conn,$sql);  
+            $rows = mysqli_num_rows($result);                              
+            for($i=0;$i<$rows;$i++) 
+            {          
+                $loc = mysqli_fetch_assoc($result);                    
+                echo '<div class="result">
+                        <img src ="images/recommendation/'.$loc['Location'].'.jpg">
+                        <div class="info">
+                            <h3>'.$loc['Location'].'</h3>
+                            <a href="'.$loc['Link'].'">Know More...</a>
+                        </div>
+                    </div>';
+            }
+            if($rows==0)
+            {
+            	echo 
+            	'<div class="result" style="margin-left: 20%;">
+                <img src="images/error.png" style="width: 20%;">
+                <div class="info">
+                    <p style="color: #fafafa;">We are sorry! We could not find any location to match your requirements. Click <a href="home.php?status=loggedin">here</a> to browse trips planned by Letstravel.</p>
+                </div>
+            </div>';
+            }
+        }
+    }   
+        
 
-		<div class="form-group">
-	      	<div class="form-check confirmBtn">
-	        	<input class="form-check-input yellowBtn bottomBtn" type="submit" name="GetResult" value="Go!">
-	      	</div>
-	    </div>
-	</form>
-    <!--form ends-->
+?>
+
+       </div>
+    </div>
+
+
+
+    <!--tab ends-->
 
 
 
@@ -168,6 +173,9 @@ if($_SESSION['status']=='loggedin')
 else
 {
   header("location:userlogin.html"); 
-}
+}     
+ 
+    
+
 mysqli_close($conn);
 ?>
