@@ -171,6 +171,8 @@
       ;
 
       echo '<!--modal-->
+      <form action="join.php" method="post">
+      <input type="hidden" name="tripid" value="'.$tripID["TripId"].'">
     <div class="modal fade" id="tripDetails'.$i.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -191,7 +193,7 @@
            
             </div>
             <div class="modal-footer">
-              <a href="join.php"><button type="button" class="yellowBtn joinBtn">Join Now</button></a>
+              <input type="submit" class="yellowBtn joinBtn" value="Join Now" name="tripjoined"></form>
             </div>
         </div>
       </div>
@@ -232,6 +234,8 @@
       ;
 
       echo '<!--modal-->
+       <form action="join.php" method="post">
+      <input type="hidden" name="tripid" value="'.$tripID["TripId"].'">
     <div class="modal fade" id="tripDetails'.$i.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -252,7 +256,7 @@
            
             </div>
             <div class="modal-footer">
-              <a href="join.php"><button type="button" class="yellowBtn joinBtn">Join Now</button></a>
+               <input type="submit" class="yellowBtn joinBtn" value="Join Now" name="tripjoined"></form>
             </div>
         </div>
       </div>

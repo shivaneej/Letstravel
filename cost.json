@@ -1,0 +1,6 @@
+[
+{"meal_pref":"veg","acc_pref":"3star","cost":0},
+{"meal_pref":"nonveg","acc_pref":"3star","cost":500},
+{"meal_pref":"veg","acc_pref":"5star","cost":5000},
+{"meal_pref":"nonveg","acc_pref":"5star","cost":5500}
+]
