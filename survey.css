@@ -153,3 +153,53 @@ input[type=checkbox]:checked {
         background-attachment: scroll;
     }
 }
+
+@media only screen and (max-width: 600px)
+{
+	body
+	{
+		overflow-x: hidden;
+	}
+	.caption
+	{
+		height: 20%;
+	}
+	.caption span
+	{
+		width: 75%;
+    	font-size: 11px;
+    	margin-left: -37%;
+    	margin-top: 3%;
+	}
+	.header
+	{
+		font-size: 20px;
+		margin-top: 20%;
+		margin-bottom: 5%;
+	}
+	.result
+	{
+		margin-bottom: 15%;
+		width: 100%;
+		-ms-flex-direction:column;
+		flex-direction:column
+	}
+	.result img
+	{
+		width: 80%;
+		margin-left: 10%;
+	}
+	.info
+	{
+		width: 80%;
+		text-align: left;
+		padding-top: 2px;
+		margin-left: 11%;
+	}
+	.info h3
+	{
+		font-size: 18px;
+		padding-top: 4px;
+		margin-top: 10px;
+	}
+}

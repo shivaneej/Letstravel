@@ -140,7 +140,7 @@ if($_SESSION['status']=='loggedin')
             	'<div class="result" style="margin-left: 20%;">
                 <img src="images/error.png" style="width: 20%;">
                 <div class="info">
-                    <p style="color: #fafafa;">We are sorry! We could not find any location to match your requirements. Click <a href="home.php?status=loggedin">here</a> to browse trips planned by Letstravel.</p>
+                    <p style="color: #fafafa;">We are sorry! We could not find any location to match your requirements. Click <a href="home.php?status=loggedin">here</a> to browse other trips planned by Letstravel.</p>
                 </div>
             </div>';
             }
