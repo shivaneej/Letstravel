@@ -116,7 +116,30 @@ if($_SESSION['status']=='loggedin')
                                 while ($row=$mobile->fetch_assoc()) {                              
                               echo "<input type='number' value='".$row['Mobile']."'>";
                               }
-                                  ?></td>
+                                 
+                              if(isset($_POST['tripjoined'])) 
+
+                               {
+                                  $tripid = $_POST["tripid"];
+                                  $sql = "SELECT locations FROM trip_location WHERE startloc=1 AND tripId='".$tripid."'";
+                                  $result = mysqli_query($conn,$sql);
+                                  for($i=0;$i<mysqli_num_rows($result);$i++)
+                                  {
+                                    $row=mysqli_fetch_assoc($result);
+                                    $startloc = $row["locations"];
+                                  }
+
+                                  $sql = "SELECT BasePrice FROM  trip WHERE tripId='".$tripid."'";
+                                  $result = mysqli_query($conn,$sql);
+                                  for($i=0;$i<mysqli_num_rows($result);$i++)
+                                  {
+                                    $row=mysqli_fetch_assoc($result);
+                                    $baseprice = $row["BasePrice"];
+                                  }
+                                  
+                               }
+
+                               ?></td>
         <td><input type='number' maxlength='16'></td>
         <td><button onclick='delRow(this)' class="delBtn"><i class='fa fa-trash' aria-hidden='true'></i></button></td>
       </tbody>
@@ -124,7 +147,7 @@ if($_SESSION['status']=='loggedin')
     <div class="form-group row">
       <label for="Locations" class="col-xl-3 col-form-label">From</label>
       <div class="col-xl-9">
-        <select class="form-control selectloc" id="Locations">
+        <select class="form-control selectloc" id="Locations" onchange="javascript:getdata();">
           <option selected="" disabled="">Select Location</option>
           <!--<option>Mumbai</option>
           <option>Delhi</option>
@@ -148,11 +171,11 @@ if($_SESSION['status']=='loggedin')
       <label for="accpref" class="col-xl-3 col-form-label">Accomodation preference</label>
       <div id="accpref" class="col-xl-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="accpref" id="3star" value="3star" onclick="javascript:compute(this.id);">
+          <input class="form-check-input" type="radio" name="accpref" id="3star" value="3star" onclick="javascript:getcost();">
           <label class="form-check-label" for="3star">3-star</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="accpref" id="5star" value="5star" onclick="javascript:compute(this.id);">
+          <input class="form-check-input" type="radio" name="accpref" id="5star" value="5star" onclick="javascript:getcost();">
           <label class="form-check-label" for="5star">5-star</label>
         </div>
       </div>
@@ -161,11 +184,11 @@ if($_SESSION['status']=='loggedin')
       <label for="mealpref" class="col-xl-3 col-form-label">Meal preference </label>
       <div id="mealpref" class="col-xl-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mealpref" id="veg" value="veg" onclick="javascript:compute(this.id);">
+          <input class="form-check-input" type="radio" name="mealpref" id="veg" value="veg" onclick="javascript:getcost();">
           <label class="form-check-label" for="veg">Veg</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mealpref" id="nonveg" value="nonveg" onclick="javascript:compute(this.id);">
+          <input class="form-check-input" type="radio" name="mealpref" id="nonveg" value="nonveg" onclick="javascript:getcost();">
           <label class="form-check-label" for="nonveg">Non-Veg</label>
         </div>
       </div>
@@ -188,11 +211,12 @@ if($_SESSION['status']=='loggedin')
       </div>
     </div>
     <div class="form-group row price">
-      <div class="totalCost">
+      <div class="totalCost" style="padding: 0%; margin: 0;">
       	<!--+500 for non veg, +5000 for 5 star -->
-        <p id="total" style="padding: 0%; margin: 0;"></p>
+        
+        <p id="total"></p>
       </div>
-      <div class="tnc">
+      <div class="tnc" display="block">
         <p id="tncText" style="padding: 0%; margin: 0; margin-bottom: 1%;">*The above price is inclusive of travelling, accomodation, taxes and trip cost.</p>
       </div>
     </div>
@@ -220,6 +244,11 @@ if($_SESSION['status']=='loggedin')
 
 
 <script>
+  var cost2=0;
+  var cost1=0;
+  var cost3=parseInt(<?php echo $baseprice; ?>,10);
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)+"*";
+  document.getElementById("price").style.display = "block"; 
   window.onload=function(){
     
      document.getElementById('addbtn').style.display = "none";
@@ -278,23 +307,80 @@ function tablerows(){
    var newcnt = parseInt(cnt)-1;
   document.getElementById("Pcount").value = newcnt;
 }
+function getdata()
+{
+  
+  var selected_locn = document.getElementById("Locations").value;
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function(){
+
+    if(xhttp.readyState == 4 && xhttp.status == 200)
+    {
+      var jsobj = JSON.parse(xhttp.response);
+        for(var i=0;i<jsobj.length;i++)
+        {
+          if(selected_locn==jsobj[i].City)
+          {
+            cost1 = parseInt(jsobj[i].<?php echo $startloc; ?>,10);
+            cost1 = cost1*2;
+            console.log(cost1);
+            document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)+"*";
+          }
+        }
+       
+    }
+
+  };
+    xhttp.open("GET","distance.json",true);
+    xhttp.send();
+}   
+function getcost()
+{
+
+  var acc_pref = "3star";
+  var meal_pref = "veg";
+  if(document.getElementById("3star").checked)
+  {
+     acc_pref = document.getElementById("3star").value;
+  }
+  if(document.getElementById("5star").checked)
+  {
+     acc_pref = document.getElementById("5star").value;
+  }
+  if(document.getElementById("veg").checked)
+  {
+     meal_pref = document.getElementById("veg").value;
+  }
+  if(document.getElementById("nonveg").checked)
+  {
+     meal_pref = document.getElementById("nonveg").value;
+  }
+   var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function(){
+
+
+    if(xhttp.readyState == 4 && xhttp.status == 200)
+    {
+      var jsobj = JSON.parse(xhttp.response);
+        for(var i=0;i<jsobj.length;i++)
+        {
+          if((meal_pref==jsobj[i].meal_pref) && (acc_pref==jsobj[i].acc_pref))
+          {
+             cost2 = parseInt(jsobj[i].cost,10);
+             console.log(cost2);
+             document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)+"*";
+          }
+        }
+       
+    }
+
+  };
+    xhttp.open("GET","cost.json",true);
+    xhttp.send();
     
- function compute(val)
- {
- 	var cost = 35000;
- 	var x = 35000;
- 	if(val == "veg")
- 		cost = cost+0;
- 	else if(val == "nonveg")
- 		cost = cost + 500;
- 	if(val== "3star")
- 		cost = cost+0;
- 	else if(val=="5star")
- 		cost = cost + 5000;
- 	var txt = "Total cost ₹" + cost +"*";
- 	document.getElementById("total").innerHTML=txt;
- 	document.getElementById('tncText').style.display = "block";
- }
+}
 </script>
 </body>
 </html>
