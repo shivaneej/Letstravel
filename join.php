@@ -1,7 +1,5 @@
-﻿<?php
-
+<?php
 session_start();
-
 if($_SESSION['status']=='loggedin')
 {
 	?>
@@ -127,7 +125,6 @@ if($_SESSION['status']=='loggedin')
                 $row=mysqli_fetch_assoc($result);	
                 $startloc = $row["locations"];	
               }
-
           $sql = "SELECT BasePrice FROM  trip WHERE tripId='".$tripid."'";
           $result = mysqli_query($conn,$sql);
           for($i=0;$i<mysqli_num_rows($result);$i++)
@@ -137,7 +134,6 @@ if($_SESSION['status']=='loggedin')
               }	
               	
            }	
-
               ?></td>
         <td><input type='text' pattern='([0-9]{16})' maxlength='16'></td>
         <td><button onclick='delRow(this)' class="delBtn"><i class='fa fa-trash' aria-hidden='true'></i></button></td>
@@ -242,10 +238,11 @@ if($_SESSION['status']=='loggedin')
 
 
 <script>
+  var passengers = parseInt(document.getElementById("Pcount").value,10);
 	var cost2=0;	
   var cost1=0;	
   var cost3=parseInt(<?php echo $baseprice; ?>,10);	
-  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)+"*";	
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
   document.getElementById("price").style.display = "block"; 
   window.onload=function(){
     
@@ -272,11 +269,13 @@ function tablerows(){
     contact.innerHTML = "<input type='text' maxlength='10' pattern='([0-9]{10})'>";
     aadhar.innerHTML = "<input type='text' maxlength='16' pattern='([0-9]{16})'>";
     deleteRow.innerHTML = "<button onclick='delRow(this)' class='delBtn'><i class='fa fa-trash' aria-hidden='true'></i></button>";
-    document.getElementById("iniPCount").style.display = "none";
-    document.getElementById("Pcount").disabled = "true";
-    document.getElementById("addbtn").style.display="inline";
     
   }
+  document.getElementById("iniPCount").style.display = "none";
+    document.getElementById("Pcount").disabled = "true";
+    document.getElementById("addbtn").style.display="inline";
+    passengers = parseInt(document.getElementById("Pcount").value,10);
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
 }
   function addRow(){
    var row1 = document.getElementById('passengertable').insertRow();
@@ -297,6 +296,8 @@ function tablerows(){
    var cnt =  document.getElementById("Pcount").value;
    var newcnt = parseInt(cnt)+1;
   document.getElementById("Pcount").value = newcnt;
+  passengers = newcnt; 
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
   }
   function delRow(r) {
     var i = r.parentNode.parentNode.rowIndex;
@@ -304,6 +305,8 @@ function tablerows(){
     var cnt =  document.getElementById("Pcount").value;
    var newcnt = parseInt(cnt)-1;
   document.getElementById("Pcount").value = newcnt;
+  passengers = newcnt;
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
 }
     
  function getdata()	
@@ -322,7 +325,7 @@ function tablerows(){
             cost1 = parseInt(jsobj[i].<?php echo $startloc; ?>,10);	
             cost1 = cost1*2;	
             console.log(cost1);	
-            document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)+"*";	
+            document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";	
           }	
         }	
        	
@@ -362,7 +365,7 @@ function getcost()
           {	
              cost2 = parseInt(jsobj[i].cost,10);	
              console.log(cost2);	
-             document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)+"*";	
+             document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";	
           }	
         }	
        	
@@ -383,4 +386,3 @@ else
 }
 mysqli_close($conn);
 ?>
-
