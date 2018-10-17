@@ -219,7 +219,14 @@ border:0.5px solid lightgrey;
 	color: #ffc312;
 }
 
-
+#fn, #ln, #eid, #mobile, #cpwd
+{
+	color: #ff3f34;
+	font-size: 12px;
+	margin-left: 28%;
+	margin-bottom: 0%;
+	display: none;
+}
 
 @media only screen and (max-width: 600px)
 {
