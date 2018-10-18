@@ -40,6 +40,7 @@ require_once('config.php');
 ></script>
 <input type="hidden" value="Hidden Element" name="hidden">
 <input type="hidden" value="<?php echo $tripID ;?>" name="idKeLiye">
+<input type="hidden" value="<?php echo $userEmail ;?>" name="MailKeLiye">
 </form>
 </body>
 </html>

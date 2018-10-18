@@ -5,6 +5,7 @@ if(isset($_POST['JoinTrip']))
 {
 	$amt = ($_POST["cost"])*100;
 	$tripID = $_POST["tripKaID"];
+	$userEmail = $_POST["email"];
 }
 
 ?>

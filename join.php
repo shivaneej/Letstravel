@@ -227,6 +227,7 @@ if($_SESSION['status']=='loggedin')
         <form action="payment.php" method="post">
         <input type="hidden" name="cost" id="costforpayment">
         <input type="hidden" name="tripKaID" id="tripIdForMail" value="<?php echo $tripid;?>">
+        <input type="hidden" name="email" id="UseremailForMail" value="<?php echo $email;?>">
         <input class="form-check-input yellowBtn bottomBtn" type="submit" name="JoinTrip" value="Proceed">
         </form>
       </div>
