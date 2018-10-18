@@ -105,7 +105,7 @@ if($_SESSION['status']=='loggedin')
                               echo "<input type='text' value='".$row['LastName']."'>";
                               }
                                   ?></td>
-        <td><input type='text' maxlength='3' pattern='([0-9]{3})'></td>
+        <td><input type='number' min='1'></td>
         <td><select><option>Select</option><option>Male</option><option>Female</option></select></td>
         <td><?php                            
                              
@@ -264,7 +264,7 @@ function tablerows(){
     var deleteRow = row.insertCell(6);
     firstname.innerHTML="<input type='text'>";
     lastname.innerHTML="<input type='text'>";
-    age.innerHTML = "<input type='text' maxlength='3' pattern='([0-9]{3})'>";
+    age.innerHTML = "<input type='number' min='1'>";
     gender.innerHTML = "<select><option>Select</option><option>Male</option><option>Female</option></select>";
     contact.innerHTML = "<input type='text' maxlength='10' pattern='([0-9]{10})'>";
     aadhar.innerHTML = "<input type='text' maxlength='16' pattern='([0-9]{16})'>";
@@ -288,7 +288,7 @@ function tablerows(){
     var deleteRow1 = row1.insertCell(6);
     firstname1.innerHTML="<input type='text'>";
     lastname1.innerHTML="<input type='text'>";
-    age1.innerHTML = "<input type='text' maxlength='3' pattern='([0-9]{3})'>";
+    age1.innerHTML = "<input type='number' min='1'>";
     gender1.innerHTML = "<select><option>Select</option><option>Male</option><option>Female</option></select>";
     contact1.innerHTML = "<input type='text' maxlength='10' pattern='([0-9]{10})'>";
     aadhar1.innerHTML = "<input type='text' maxlength='16' pattern='([0-9]{16})'>";
