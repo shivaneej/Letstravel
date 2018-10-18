@@ -60,7 +60,7 @@ if($_SESSION['status']=='loggedin')
                             ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Edit Profile</a>
+            <!-- <a class="dropdown-item" href="#">Edit Profile</a> -->
             <a class="dropdown-item" href="logout.php">Logout</a>
           </div>
         </li>        
