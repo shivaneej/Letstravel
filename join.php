@@ -221,11 +221,12 @@ if($_SESSION['status']=='loggedin')
     </div>
     <div class="form-group row col-md-12" class="foot">
       <div class="form-check form-check-inline col-md-5">
-        <button onclick="" class="secondaryBtn">Cancel</button>
+        <a href="home.php?status=loggedin"><button onclick="" class="secondaryBtn">Cancel</button></a>
       </div>
       <div class="form-check form-check-inline col-md-5 confirmBtn">
         <form action="payment.php" method="post">
         <input type="hidden" name="cost" id="costforpayment">
+        <input type="hidden" name="tripKaID" id="tripIdForMail" value="<?php echo $tripid;?>">
         <input class="form-check-input yellowBtn bottomBtn" type="submit" name="JoinTrip" value="Proceed">
         </form>
       </div>

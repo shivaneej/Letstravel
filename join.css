@@ -116,11 +116,11 @@ body{
 	background-color: #44bd32;
 }
 .secondaryBtn{
-	width: 60%;
+	width: 400%;
 	margin: 0;
 	height: 120%;
 	border-radius: 5px;
-	padding: 0;
+	padding: 5%;
 	background-color: #ffffff;
 	color: #2c3e50;
 	border: 1px solid #2c3e50;

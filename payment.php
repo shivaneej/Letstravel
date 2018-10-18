@@ -1,7 +1,7 @@
 <?php
 
-require_once('config.php');
 
+require_once('config.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@ require_once('config.php');
     </style>
 </head>
 <body> 
-	<form action="home.php" method="POST">
+	<form action="mail.php" method="POST">
 <!-- Note that the amount is in paise -->
 <script
     src="https://checkout.razorpay.com/v1/checkout-new.js"
@@ -39,6 +39,7 @@ require_once('config.php');
     data-theme.color="#ffc312"
 ></script>
 <input type="hidden" value="Hidden Element" name="hidden">
+<input type="hidden" value="<?php echo $tripID ;?>" name="idKeLiye">
 </form>
 </body>
 </html>
