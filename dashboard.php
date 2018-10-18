@@ -268,15 +268,6 @@ if($_SESSION['status']=='loggedin')
 
 <?php 
 }
-
-if(isset($_POST['deleteTrip']))
-            {
-                $tripDel = $_POST['deleteTrip'];
-                $sqlx = 'UPDATE trip set Status = 0 where tripId="'.$tripDel.'"';
-                $resultx = mysqli_query($conn,$sqlx);
-                if($resultx == True)
-                  echo "<script type='text/javascript'>alert('Trip Deleted Successfully'); window.location='dashboard.php'</script>";
-            }
 ?>
 </div>
 </div>
@@ -365,5 +356,13 @@ else
 {
   header("location:adminlogin.html"); 
 }
+if(isset($_POST['deleteTrip']))
+            {
+                $tripDel = $_POST['deleteTrip'];
+                $sqlx = 'UPDATE trip set Status = 0 where tripId="'.$tripDel.'"';
+                $resultx = mysqli_query($conn,$sqlx);
+                if($resultx == True)
+                  echo "<script type='text/javascript'>alert('Trip Deleted Successfully'); window.location='dashboard.php'</script>";
+            }
 //mysqli_close($conn);
 ?>
