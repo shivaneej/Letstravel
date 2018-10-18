@@ -2,7 +2,7 @@
 session_start();
 if($_SESSION['status']=='loggedin')
 {
-	?>
+  ?>
   <!DOCTYPE html>
 <html>
 <head>
@@ -41,20 +41,20 @@ if($_SESSION['status']=='loggedin')
                       Hi, 
                       <?php  
                              $servername = 'localhost';
-    						 $username = 'root';
-    						 $password = '';
-     						 $db='letstravel';
-    						 $conn = mysqli_connect($servername,$username,$password,$db);
-    						if (!$conn) 	
-        					{			
-            					die("Connection failed: " . mysqli_connect_error());
-        					}                            
-                                                        	
-                            	$email=$_SESSION['user_email'];
+                 $username = 'root';
+                 $password = '';
+                 $db='letstravel';
+                 $conn = mysqli_connect($servername,$username,$password,$db);
+                if (!$conn)   
+                  {     
+                      die("Connection failed: " . mysqli_connect_error());
+                  }                            
+                                                          
+                              $email=$_SESSION['user_email'];
                                 $sql="SELECT FirstName FROM user WHERE Email='".$email."'";
                                 $fname = mysqli_query($conn,$sql);                                
-                                while ($row=$fname->fetch_assoc()) {                            	
-                            	echo $row['FirstName'];
+                                while ($row=$fname->fetch_assoc()) {                              
+                              echo $row['FirstName'];
                               }
                                                      
                             ?>
@@ -75,7 +75,6 @@ if($_SESSION['status']=='loggedin')
       <button id="iniPCount" onclick="tablerows()" class="yellowBtn">Go!</button>
       <button id="addbtn" onclick="addRow()" class="linkBtn">+ Add</button>
     </div>
-    <form>
     <table class="table" id="passengertable">
       <thead class="thead-dark">
         <tr>
@@ -113,27 +112,27 @@ if($_SESSION['status']=='loggedin')
             $mobile = mysqli_query($conn,$sql);                                
             while ($row=$mobile->fetch_assoc()) 
             {                              
-          		echo "<input type='text' maxlength='10' pattern='([0-9]{10})' value='".$row['Mobile']."'>";
-          	}
-          if(isset($_POST['tripjoined'])) 	
-            {	
-              $tripid = $_POST["tripid"];	
-              $sql = "SELECT locations FROM trip_location WHERE startloc=1 AND tripId='".$tripid."'";	
-              $result = mysqli_query($conn,$sql);	
-              for($i=0;$i<mysqli_num_rows($result);$i++)	
-              {	
-                $row=mysqli_fetch_assoc($result);	
-                $startloc = $row["locations"];	
+              echo "<input type='text' maxlength='10' pattern='([0-9]{10})' value='".$row['Mobile']."'>";
+            }
+          if(isset($_POST['tripjoined']))   
+            { 
+              $tripid = $_POST["tripid"]; 
+              $sql = "SELECT locations FROM trip_location WHERE startloc=1 AND tripId='".$tripid."'"; 
+              $result = mysqli_query($conn,$sql); 
+              for($i=0;$i<mysqli_num_rows($result);$i++)  
+              { 
+                $row=mysqli_fetch_assoc($result); 
+                $startloc = $row["locations"];  
               }
           $sql = "SELECT BasePrice FROM  trip WHERE tripId='".$tripid."'";
           $result = mysqli_query($conn,$sql);
           for($i=0;$i<mysqli_num_rows($result);$i++)
-          	{	
-                $row=mysqli_fetch_assoc($result);	
-                $baseprice = $row["BasePrice"];	
-              }	
-              	
-           }	
+            { 
+                $row=mysqli_fetch_assoc($result); 
+                $baseprice = $row["BasePrice"]; 
+              } 
+                
+           }  
               ?></td>
         <td><input type='text' pattern='([0-9]{16})' maxlength='16'></td>
         <td><button onclick='delRow(this)' class="delBtn"><i class='fa fa-trash' aria-hidden='true'></i></button></td>
@@ -154,8 +153,8 @@ if($_SESSION['status']=='loggedin')
             $city = mysqli_query($conn,$sql5);                                
             while ($row5=$city->fetch_assoc()) 
             {                              
-          		echo "<option value='".$row5['City']."'>".$row5['City']."</option>";
-          	}
+              echo "<option value='".$row5['City']."'>".$row5['City']."</option>";
+            }
           ?>
 
 
@@ -207,7 +206,7 @@ if($_SESSION['status']=='loggedin')
     </div>
     <div class="form-group row price">
       <div class="totalCost"  style="padding: 0%; margin: 0;">
-      	<!--+500 for non veg, +5000 for 5 star -->
+        <!--+500 for non veg, +5000 for 5 star -->
         <p id="total"></p>
       </div>
       <div class="tnc" style="display: block;">
@@ -225,10 +224,13 @@ if($_SESSION['status']=='loggedin')
         <button onclick="" class="secondaryBtn">Cancel</button>
       </div>
       <div class="form-check form-check-inline col-md-5 confirmBtn">
-        <input class="form-check-input yellowBtn bottomBtn" type="submit" name="JoinTrip" value="Proceed to pay">
+        <form action="payment.php" method="post">
+        <input type="hidden" name="cost" id="costforpayment">
+        <input class="form-check-input yellowBtn bottomBtn" type="submit" name="JoinTrip" value="Proceed">
+        </form>
       </div>
     </div>
-    </form>
+    
   </div>
 
 <!--Bootstrap JS-->
@@ -238,11 +240,13 @@ if($_SESSION['status']=='loggedin')
 
 
 <script>
+
   var passengers = parseInt(document.getElementById("Pcount").value,10);
-	var cost2=0;	
-  var cost1=0;	
-  var cost3=parseInt(<?php echo $baseprice; ?>,10);	
+  var cost3=parseInt(<?php echo $baseprice; ?>,10); 
+  var cost2=0;  
+  var cost1=0;
   document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
+  document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers;
   document.getElementById("price").style.display = "block"; 
   window.onload=function(){
     
@@ -275,7 +279,8 @@ function tablerows(){
     document.getElementById("Pcount").disabled = "true";
     document.getElementById("addbtn").style.display="inline";
     passengers = parseInt(document.getElementById("Pcount").value,10);
-  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
+  document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
 }
   function addRow(){
    var row1 = document.getElementById('passengertable').insertRow();
@@ -297,7 +302,8 @@ function tablerows(){
    var newcnt = parseInt(cnt)+1;
   document.getElementById("Pcount").value = newcnt;
   passengers = newcnt; 
-  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
+  document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
   }
   function delRow(r) {
     var i = r.parentNode.parentNode.rowIndex;
@@ -306,74 +312,76 @@ function tablerows(){
    var newcnt = parseInt(cnt)-1;
   document.getElementById("Pcount").value = newcnt;
   passengers = newcnt;
-  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
+  document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
 }
     
- function getdata()	
-{	
-  	
-  var selected_locn = document.getElementById("Locations").value;	
-  var xhttp = new XMLHttpRequest();	
-   xhttp.onreadystatechange = function(){	
-     if(xhttp.readyState == 4 && xhttp.status == 200)	
-    {	
-      var jsobj = JSON.parse(xhttp.response);	
-        for(var i=0;i<jsobj.length;i++)	
-        {	
-          if(selected_locn==jsobj[i].City)	
-          {	
-            cost1 = parseInt(jsobj[i].<?php echo $startloc; ?>,10);	
-            cost1 = cost1*2;	
-            console.log(cost1);	
-            document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";	
-          }	
-        }	
-       	
-    }	
-   };	
-    xhttp.open("GET","distance.json",true);	
-    xhttp.send();	
-}   	
-function getcost()	
-{	
-   var acc_pref = "3star";	
-  var meal_pref = "veg";	
-  if(document.getElementById("3star").checked)	
-  {	
-     acc_pref = document.getElementById("3star").value;	
-  }	
-  if(document.getElementById("5star").checked)	
-  {	
-     acc_pref = document.getElementById("5star").value;	
-  }	
-  if(document.getElementById("veg").checked)	
-  {	
-     meal_pref = document.getElementById("veg").value;	
-  }	
-  if(document.getElementById("nonveg").checked)	
-  {	
-     meal_pref = document.getElementById("nonveg").value;	
-  }	
-   var xhttp = new XMLHttpRequest();	
-   xhttp.onreadystatechange = function(){	
-     if(xhttp.readyState == 4 && xhttp.status == 200)	
-    {	
-      var jsobj = JSON.parse(xhttp.response);	
-        for(var i=0;i<jsobj.length;i++)	
-        {	
-          if((meal_pref==jsobj[i].meal_pref) && (acc_pref==jsobj[i].acc_pref))	
-          {	
-             cost2 = parseInt(jsobj[i].cost,10);	
-             console.log(cost2);	
-             document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";	
-          }	
-        }	
-       	
-    }	
-   };	
-    xhttp.open("GET","cost.json",true);	
-    xhttp.send();	
-    	    
+ function getdata() 
+{ 
+    
+  var selected_locn = document.getElementById("Locations").value; 
+  var xhttp = new XMLHttpRequest(); 
+   xhttp.onreadystatechange = function(){ 
+     if(xhttp.readyState == 4 && xhttp.status == 200) 
+    { 
+      var jsobj = JSON.parse(xhttp.response); 
+        for(var i=0;i<jsobj.length;i++) 
+        { 
+          if(selected_locn==jsobj[i].City)  
+          { 
+            cost1 = parseInt(jsobj[i].<?php echo $startloc; ?>,10); 
+            cost1 = cost1*2;  
+            console.log(cost1); 
+            document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
+          } 
+        } 
+        
+    } 
+   }; 
+    xhttp.open("GET","distance.json",true); 
+    xhttp.send(); 
+    document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers;
+}     
+function getcost()  
+{ 
+   var acc_pref = "3star";  
+  var meal_pref = "veg";  
+  if(document.getElementById("3star").checked)  
+  { 
+     acc_pref = document.getElementById("3star").value; 
+  } 
+  if(document.getElementById("5star").checked)  
+  { 
+     acc_pref = document.getElementById("5star").value; 
+  } 
+  if(document.getElementById("veg").checked)  
+  { 
+     meal_pref = document.getElementById("veg").value;  
+  } 
+  if(document.getElementById("nonveg").checked) 
+  { 
+     meal_pref = document.getElementById("nonveg").value; 
+  } 
+   var xhttp = new XMLHttpRequest();  
+   xhttp.onreadystatechange = function(){ 
+     if(xhttp.readyState == 4 && xhttp.status == 200) 
+    { 
+      var jsobj = JSON.parse(xhttp.response); 
+        for(var i=0;i<jsobj.length;i++) 
+        { 
+          if((meal_pref==jsobj[i].meal_pref) && (acc_pref==jsobj[i].acc_pref))  
+          { 
+             cost2 = parseInt(jsobj[i].cost,10);  
+             console.log(cost2);  
+             document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";  
+          } 
+        } 
+        
+    } 
+   }; 
+    xhttp.open("GET","cost.json",true); 
+    xhttp.send(); 
+    document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers;     
 }
 </script>
 </body>
