@@ -183,15 +183,21 @@ input.upload
     body
     {
         overflow-x: hidden;
+        width: 100%;
+    }
+    html{
+    	overflow-x: hidden;
+    }
+    .row
+    {
+
+    	overflow-x: hidden;
     }
     #createTripModal
     {
-        width:90%; 
+        width:100%; 
     }
-    #createTripModal .modal-content
-    {
-        width: 80%;
-    }
+   
 
     #start, #tripLocs
     {
@@ -203,22 +209,48 @@ input.upload
     }
 
     .modal{
-        width: 90%;
+        width: 100%;
     }
     .modal .modal-content
     {
         width: 85%;
+        margin-top: 15%;
     }
     .createCard
     {
-        width: 80%;
+        width: 100%;
         height: 40%;
         margin-bottom: 10%;
+        margin-top: 10%;
+        margin-left: 0%;
     }
     .card
     {
-        width: 80%;
+        width: 100%;
         left: -10%;
         margin-top: 5%;
+    }
+    #up
+    {
+        margin-top: 5%;
+    }
+    #bar
+    {
+        height: 55px;
+    }
+    #logout
+    {
+        margin-top: -7%;
+        margin-right: -21%;
+        font-size: 18px;
+    }
+    .close
+    {
+        margin-top: -5%;
+    }
+    #createTripModal .modal-content
+    {
+        width: 90%;
+        margin-top: 0%;
     }
 }
