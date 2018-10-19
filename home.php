@@ -57,7 +57,7 @@
                             ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Edit Profile</a>
+<!--                         <a class="dropdown-item" href="#">Edit Profile</a> -->
                         <a class="dropdown-item" href="logout.php" name="logout_link">Logout</a>
                     </div>
                 </li>
