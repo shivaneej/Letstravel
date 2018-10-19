@@ -397,7 +397,7 @@ if(isset($_POST['deleteTrip']))
 	    $mail->Username = 'help.letstravel@gmail.com';
 	    $mail->Password = 'help@LT123';
 	    $mail->SetFrom("help.letstravel@gmail.com","Letstravel");
-	    $mail->Subject = "Your Trip with Letstravel";
+	    $mail->Subject = "Update On Your Trip With Letstravel";
 	    $mail->Body = "Dear ".$namem.",<br>We regret to inform you that your trip to ".$locs12." was cancelled by our team due to some issues. We are extremely sorry for the inconvenience caused. <br> <br> You will recieve your refund within <b>7 working days</b>. In case of any disrepancy, please write to our team at <i>help@letstravel.com</i>.<br><br>-Best Regards, <br> <i>Team Letstravel</i>";  
 	    $mail->AddAddress($email); // Add recipients
 
