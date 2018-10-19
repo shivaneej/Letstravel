@@ -177,3 +177,48 @@ input.upload
 {
     height: 10%;
 }
+
+@media only screen and (max-width: 600px)
+{
+    body
+    {
+        overflow-x: hidden;
+    }
+    #createTripModal
+    {
+        width:90%; 
+    }
+    #createTripModal .modal-content
+    {
+        width: 80%;
+    }
+
+    #start, #tripLocs
+    {
+        margin-left: 20%;
+    }
+    .label
+    {
+        left: 0%;
+    }
+
+    .modal{
+        width: 90%;
+    }
+    .modal .modal-content
+    {
+        width: 85%;
+    }
+    .createCard
+    {
+        width: 80%;
+        height: 40%;
+        margin-bottom: 10%;
+    }
+    .card
+    {
+        width: 80%;
+        left: -10%;
+        margin-top: 5%;
+    }
+}
