@@ -76,6 +76,7 @@ body{
 #iniPCount{
 	width: 7%;
 	margin: unset;
+	color: #ffffff;
 }
 #addbtn{
 	color: #ffc312;
@@ -105,8 +106,8 @@ body{
 	margin-left: 10%;
 }
 .bottomBtn{
-	padding: 5%;
-	width: 350%;
+	padding: 0%;
+	width: 268px;
 	margin: 0%; 
 	height: 120%;
 	position: absolute;
