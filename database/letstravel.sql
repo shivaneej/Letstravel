@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2018 at 09:21 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- Generation Time: Oct 18, 2018 at 08:05 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -1638,13 +1638,22 @@ INSERT INTO `hotels` (`Hotel Name`, `Rating`) VALUES
 
 CREATE TABLE `join_trip` (
   `UserEmail` varchar(40) NOT NULL,
-  `TripId` varchar(5) NOT NULL,
+  `TripId` varchar(20) NOT NULL,
   `FirstName` varchar(20) NOT NULL,
   `LastName` varchar(20) NOT NULL,
   `Age` tinyint(3) NOT NULL,
+  `gender` varchar(10) NOT NULL,
   `Contact` bigint(10) NOT NULL,
   `AadharNumber` bigint(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `join_trip`
+--
+
+INSERT INTO `join_trip` (`UserEmail`, `TripId`, `FirstName`, `LastName`, `Age`, `gender`, `Contact`, `AadharNumber`) VALUES
+('grusha.d@somaiya.edu', 'taj.jpg', 'Grusha', 'Dharod', 23, 'Male', 1234567890, 1234567890111219),
+('grusha.d@somaiya.edu', 'taj.jpg', 'abc', 'pqr`', 20, 'Female', 1234567811, 1234567891012345);
 
 -- --------------------------------------------------------
 
@@ -1716,7 +1725,7 @@ INSERT INTO `recom_locs` (`Location`, `Link`, `Category`, `TripGroup`, `Min Age`
 --
 
 CREATE TABLE `trip` (
-  `TripId` varchar(10) NOT NULL,
+  `TripId` varchar(20) NOT NULL,
   `Image` varchar(20) NOT NULL,
   `BasePrice` mediumint(10) NOT NULL,
   `Status` tinyint(1) NOT NULL,
@@ -1733,7 +1742,6 @@ CREATE TABLE `trip` (
 --
 
 INSERT INTO `trip` (`TripId`, `Image`, `BasePrice`, `Status`, `Itinerary`, `StartDate`, `EndDate`, `CreatedBy`, `GuideName`, `GuideContact`) VALUES
-('2018RNJ', 'rnj.png', 20000, 1, 'rnj.docx', '2018-09-13', '2018-09-28', 'shivaneej02@gmail.com', 'shivanee', 1234567890),
 ('Mumbai.jpg', 'Mumbai.jpg', 15000, 1, 'Mumbai.docx', '2018-10-02', '2018-10-11', 'shivaneej02@gmail.com', 'Sneh', 12345),
 ('taj.jpg', 'taj.jpg', 7600, 1, 'Delhi.docx', '2018-10-16', '2018-10-20', 'shivaneej02@gmail.com', 'Neelay Gosar', 9876543210);
 
@@ -1765,9 +1773,6 @@ CREATE TABLE `trip_location` (
 --
 
 INSERT INTO `trip_location` (`tripId`, `locations`, `startLoc`) VALUES
-('2018RNJ', 'Rishikesh', 1),
-('2018RNJ', 'Nainital', 0),
-('2018RNJ', 'Jim Corbett', 0),
 ('Mumbai.jpg', 'Mumbai', 1),
 ('Mumbai.jpg', 'Goa', 0),
 ('Mumbai.jpg', 'Pune', 0),
@@ -1800,6 +1805,56 @@ INSERT INTO `user` (`FirstName`, `LastName`, `Email`, `Password`, `Mobile`, `Cit
 ('Shivanee', 'Jaiswal', 'jaiswalshivanee0211@yahoo.in', 'shiv', 892329, '', 0, ''),
 ('Shivanee', 'Jaiswal', 'shivanee.j@somaiya.edu', '12345', 8097806372, '', 0, ''),
 ('Vicky', 'Daiya', 'vicky.daiya@somaiya.edu', 'vicky', 9876543210, '', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_pref`
+--
+
+CREATE TABLE `user_pref` (
+  `user_email` varchar(40) NOT NULL,
+  `from_location` varchar(20) NOT NULL,
+  `accomodation_pref` varchar(20) NOT NULL,
+  `meal_pref` varchar(20) NOT NULL,
+  `travel_time` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_pref`
+--
+
+INSERT INTO `user_pref` (`user_email`, `from_location`, `accomodation_pref`, `meal_pref`, `travel_time`) VALUES
+('shivanee.j@somaiya.edu', 'Barddhaman', '3 star', 'nonveg', 'night'),
+('shivanee.j@somaiya.edu', 'Bareilly', '5 star', 'veg', 'any'),
+('shivanee.j@somaiya.edu', '', '', '', ''),
+('shivanee.j@somaiya.edu', 'Meerut', '3 star', 'nonveg', 'night'),
+('shivanee.j@somaiya.edu', 'Allahabad', '5 star', 'veg', 'night'),
+('shivanee.j@somaiya.edu', 'Barddhaman', '5 star', 'veg', 'night'),
+('shivanee.j@somaiya.edu', 'Bangalore', '5 star', 'nonveg', 'night'),
+('shivanee.j@somaiya.edu', 'Bangalore', '5 star', 'nonveg', 'night'),
+('shivanee.j@somaiya.edu', 'Aurangabad', '3 star', 'nonveg', 'night'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'veg', 'day'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'veg', 'day'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'veg', 'day'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'nonveg', 'any'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'nonveg', 'any'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'nonveg', 'any'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'nonveg', 'any'),
+('shivanee.j@somaiya.edu', 'Bangalore', '3 star', 'nonveg', 'any'),
+('shivanee.j@somaiya.edu', 'Bareilly', '5 star', 'nonveg', 'night'),
+('grusha.d@somaiya.edu', 'Pune', '3 star', 'nonveg', 'day'),
+('grusha.d@somaiya.edu', 'Barauni', '5 star', 'veg', 'night'),
+('grusha.d@somaiya.edu', 'Barauni', '5 star', 'veg', 'night'),
+('grusha.d@somaiya.edu', 'Barddhaman', '5 star', 'veg', 'night'),
+('grusha.d@somaiya.edu', 'Belgaum', '5 star', 'nonveg', 'day'),
+('grusha.d@somaiya.edu', 'Bareilly', '3 star', 'nonveg', 'any'),
+('grusha.d@somaiya.edu', 'Bareilly', '5 star', 'nonveg', 'night'),
+('grusha.d@somaiya.edu', 'Belgaum', '3 star', 'nonveg', 'night'),
+('grusha.d@somaiya.edu', 'Barauni', '5 star', 'nonveg', 'night'),
+('grusha.d@somaiya.edu', 'Bellary', '5 star', 'nonveg', 'night'),
+('grusha.d@somaiya.edu', 'Bellary', '5 star', 'nonveg', 'any'),
+('grusha.d@somaiya.edu', 'Bellary', '5 star', 'nonveg', 'any');
 
 --
 -- Indexes for dumped tables
@@ -1864,6 +1919,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`Email`);
 
 --
+-- Indexes for table `user_pref`
+--
+ALTER TABLE `user_pref`
+  ADD KEY `user_email` (`user_email`);
+
+--
 -- Constraints for dumped tables
 --
 
@@ -1884,8 +1945,8 @@ ALTER TABLE `get_recommendation`
 -- Constraints for table `join_trip`
 --
 ALTER TABLE `join_trip`
-  ADD CONSTRAINT `join_trip_ibfk_1` FOREIGN KEY (`TripId`) REFERENCES `trip` (`TripId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `join_trip_ibfk_2` FOREIGN KEY (`UserEmail`) REFERENCES `user` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `join_trip_ibfk_2` FOREIGN KEY (`UserEmail`) REFERENCES `user` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `join_trip_ibfk_3` FOREIGN KEY (`TripId`) REFERENCES `trip` (`TripId`);
 
 --
 -- Constraints for table `trip`
@@ -1904,6 +1965,12 @@ ALTER TABLE `trip_group`
 --
 ALTER TABLE `trip_location`
   ADD CONSTRAINT `triploc` FOREIGN KEY (`tripId`) REFERENCES `trip` (`TripId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_pref`
+--
+ALTER TABLE `user_pref`
+  ADD CONSTRAINT `user_pref_ibfk_1` FOREIGN KEY (`user_email`) REFERENCES `user` (`Email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
