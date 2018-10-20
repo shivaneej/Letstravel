@@ -2,7 +2,7 @@
 session_start();
 if($_SESSION['status']=='loggedin')
 {
-  ?>
+	?>
   <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@ if($_SESSION['status']=='loggedin')
           <a class="nav-link" href="home.php?status=loggedin#Upcoming">Upcoming Trips</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#Upcoming">FAQ</a>
+          <a class="nav-link" href="https://www.google.com">FAQ</a>
         </li>
       </ul>
       <ul class="navbar-nav">
@@ -41,26 +41,28 @@ if($_SESSION['status']=='loggedin')
                       Hi, 
                       <?php  
                              $servername = 'localhost';
-                 $username = 'root';
-                 $password = '';
-                 $db='letstravel';
-                 $conn = mysqli_connect($servername,$username,$password,$db);
-                if (!$conn)   
-                  {     
-                      die("Connection failed: " . mysqli_connect_error());
-                  }                            
-                                                          
-                              $email=$_SESSION['user_email'];
+    						 $username = 'root';
+    						 $password = '';
+     						 $db='letstravel';
+    						 $conn = mysqli_connect($servername,$username,$password,$db);
+    						if (!$conn) 	
+        					{			
+            					die("Connection failed: " . mysqli_connect_error());
+        					}                            
+                                                        	
+                            	$email=$_SESSION['user_email'];
                                 $sql="SELECT FirstName FROM user WHERE Email='".$email."'";
                                 $fname = mysqli_query($conn,$sql);                                
-                                while ($row=$fname->fetch_assoc()) {                              
-                              echo $row['FirstName'];
+                                while ($row=$fname->fetch_assoc()) {                            	
+                            	echo $row['FirstName'];
                               }
-                                                     
+
+                              $_SESSION['tripid']=$_POST['tripid'];
+                              //echo $_SESSION['tripid'];                                                     
                             ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <!-- <a class="dropdown-item" href="#">Edit Profile</a> -->
+<!--             <a class="dropdown-item" href="#">Edit Profile</a> -->
             <a class="dropdown-item" href="logout.php">Logout</a>
           </div>
         </li>        
@@ -68,12 +70,13 @@ if($_SESSION['status']=='loggedin')
     </div>
   </nav>
   <!--main form-->
-  <div class="joinForm">
+    <form action="upload.php" method="POST">
+    	<div class="joinForm">
     <div class="topButtons">
       <label class="form-check-label" for="Pcount">Number of Passengers</label>
       <input type="number" name="passengerCount" min="1" id="Pcount" value="1">
-      <button id="iniPCount" onclick="tablerows()" class="yellowBtn">Go!</button>
-      <button id="addbtn" onclick="addRow()" class="linkBtn">+ Add</button>
+       <a id="iniPCount" onclick="tablerows()" class="yellowBtn">Go!</a>
+      <a id="addbtn" onclick="addRow()" class="linkBtn">+ Add</a>
     </div>
     <table class="table" id="passengertable">
       <thead class="thead-dark">
@@ -93,7 +96,7 @@ if($_SESSION['status']=='loggedin')
                                 $sql="SELECT FirstName FROM user WHERE Email='".$email."'";
                                 $fname = mysqli_query($conn,$sql);                                
                                 while ($row=$fname->fetch_assoc()) {                              
-                              echo "<input type='text' value='".$row['FirstName']."'>";
+                              echo "<input type='text' name='fname0' value='".$row['FirstName']."'>";
                               }
                                   ?></td>
         <td><?php                            
@@ -101,47 +104,48 @@ if($_SESSION['status']=='loggedin')
                                 $sql="SELECT LastName FROM user WHERE Email='".$email."'";
                                 $lname = mysqli_query($conn,$sql);                                
                                 while ($row=$lname->fetch_assoc()) {                              
-                              echo "<input type='text' value='".$row['LastName']."'>";
+                              echo "<input type='text' name='lname0' value='".$row['LastName']."'>";
                               }
                                   ?></td>
-        <td><input type='number' min='1'></td>
-        <td><select><option>Select</option><option>Male</option><option>Female</option></select></td>
+        <td><input name="age0" type='number' min='1'></td>
+        <td><select name='gender0'><option>Select</option><option>Male</option><option>Female</option></select></td>
         <td><?php                            
                              
             $sql="SELECT Mobile FROM user WHERE Email='".$email."'";
             $mobile = mysqli_query($conn,$sql);                                
             while ($row=$mobile->fetch_assoc()) 
             {                              
-              echo "<input type='text' maxlength='10' pattern='([0-9]{10})' value='".$row['Mobile']."'>";
-            }
-          if(isset($_POST['tripjoined']))   
-            { 
-              $tripid = $_POST["tripid"]; 
-              $sql = "SELECT locations FROM trip_location WHERE startloc=1 AND tripId='".$tripid."'"; 
-              $result = mysqli_query($conn,$sql); 
-              for($i=0;$i<mysqli_num_rows($result);$i++)  
-              { 
-                $row=mysqli_fetch_assoc($result); 
-                $startloc = $row["locations"];  
+          		echo "<input type='text' name='contact0' maxlength='10' pattern='([0-9]{10})' value='".$row['Mobile']."'>";
+          	}
+          if(isset($_POST['tripjoined'])) 	
+            {	
+              $tripid = $_POST["tripid"];	
+              $sql = "SELECT locations FROM trip_location WHERE startloc=1 AND tripId='".$tripid."'";	
+              $result = mysqli_query($conn,$sql);
+              $num=mysqli_num_rows($result);
+              for($i=0;$i<$num;$i++)	
+              {	
+                $row=mysqli_fetch_assoc($result);	
+                $startloc = $row["locations"];	
               }
           $sql = "SELECT BasePrice FROM  trip WHERE tripId='".$tripid."'";
           $result = mysqli_query($conn,$sql);
           for($i=0;$i<mysqli_num_rows($result);$i++)
-            { 
-                $row=mysqli_fetch_assoc($result); 
-                $baseprice = $row["BasePrice"]; 
-              } 
-                
-           }  
+          	{	
+                $row=mysqli_fetch_assoc($result);	
+                $baseprice = $row["BasePrice"];	
+              }	
+              	
+           }	
               ?></td>
-        <td><input type='text' pattern='([0-9]{16})' maxlength='16'></td>
+        <td><input type='text' pattern='([0-9]{16})' maxlength='16' name='aadharno0'></td>
         <td><button onclick='delRow(this)' class="delBtn"><i class='fa fa-trash' aria-hidden='true'></i></button></td>
       </tbody>
     </table>
     <div class="form-group row">
       <label for="Locations" class="col-xl-3 col-form-label">From</label>
       <div class="col-xl-9">
-        <select class="form-control selectloc" id="Locations" onchange="javascript:getdata();">
+        <select name='from_loc' class="form-control selectloc" id="Locations" onchange="javascript:getdata();">
           <option selected="" disabled="">Select Location</option>
           <!--<option>Mumbai</option>
           <option>Delhi</option>
@@ -153,8 +157,8 @@ if($_SESSION['status']=='loggedin')
             $city = mysqli_query($conn,$sql5);                                
             while ($row5=$city->fetch_assoc()) 
             {                              
-              echo "<option value='".$row5['City']."'>".$row5['City']."</option>";
-            }
+          		echo "<option value='".$row5['City']."'>".$row5['City']."</option>";
+          	}
           ?>
 
 
@@ -165,11 +169,11 @@ if($_SESSION['status']=='loggedin')
       <label for="accpref" class="col-xl-3 col-form-label">Accomodation preference</label>
       <div id="accpref" class="col-xl-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="accpref" id="3star" value="3star" onclick="javascript:getcost();">
+          <input class="form-check-input" type="radio" name="accpref" id="3star" value="3star" onchange="javascript:getcost();">
           <label class="form-check-label" for="3star">3-star</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="accpref" id="5star" value="5star" onclick="javascript:getcost();">
+          <input class="form-check-input" type="radio" name="accpref" id="5star" value="5star" onchange="javascript:getcost();">
           <label class="form-check-label" for="5star">5-star</label>
         </div>
       </div>
@@ -178,11 +182,11 @@ if($_SESSION['status']=='loggedin')
       <label for="mealpref" class="col-xl-3 col-form-label">Meal preference </label>
       <div id="mealpref" class="col-xl-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mealpref" id="veg" value="veg" onclick="javascript:getcost();">
+          <input class="form-check-input" type="radio" name="mealpref" id="veg" value="veg" onchange="javascript:getcost();">
           <label class="form-check-label" for="veg">Veg</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mealpref" id="nonveg" value="nonveg" onclick="javascript:getcost();">
+          <input class="form-check-input" type="radio" name="mealpref" id="nonveg" value="nonveg" onchange="javascript:getcost();">
           <label class="form-check-label" for="nonveg">Non-Veg</label>
         </div>
       </div>
@@ -206,7 +210,7 @@ if($_SESSION['status']=='loggedin')
     </div>
     <div class="form-group row price">
       <div class="totalCost"  style="padding: 0%; margin: 0;">
-        <!--+500 for non veg, +5000 for 5 star -->
+      	<!--+500 for non veg, +5000 for 5 star -->
         <p id="total"></p>
       </div>
       <div class="tnc" style="display: block;">
@@ -224,15 +228,13 @@ if($_SESSION['status']=='loggedin')
         <a href="home.php?status=loggedin"><button onclick="" class="secondaryBtn">Cancel</button></a>
       </div>
       <div class="form-check form-check-inline col-md-5 confirmBtn">
-        <form action="payment.php" method="post">
         <input type="hidden" name="cost" id="costforpayment">
         <input type="hidden" name="tripKaID" id="tripIdForMail" value="<?php echo $tripid;?>">
         <input type="hidden" name="email" id="UseremailForMail" value="<?php echo $email;?>">
         <input class="form-check-input yellowBtn bottomBtn" type="submit" name="JoinTrip" value="Proceed">
-        </form>
       </div>
     </div>
-    
+    </form>
   </div>
 
 <!--Bootstrap JS-->
@@ -242,13 +244,12 @@ if($_SESSION['status']=='loggedin')
 
 
 <script>
-
   var passengers = parseInt(document.getElementById("Pcount").value,10);
-  var cost3=parseInt(<?php echo $baseprice; ?>,10); 
-  var cost2=0;  
-  var cost1=0;
+	var cost2=0;	
+  var cost1=0;	
+  var cost3=parseInt(<?php echo $baseprice; ?>,10);	
   document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
-  document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers;
+  document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
   document.getElementById("price").style.display = "block"; 
   window.onload=function(){
     
@@ -268,21 +269,23 @@ function tablerows(){
     var contact = row.insertCell(4);
     var aadhar = row.insertCell(5);
     var deleteRow = row.insertCell(6);
-    firstname.innerHTML="<input type='text'>";
-    lastname.innerHTML="<input type='text'>";
-    age.innerHTML = "<input type='number' min='1'>";
-    gender.innerHTML = "<select><option>Select</option><option>Male</option><option>Female</option></select>";
-    contact.innerHTML = "<input type='text' maxlength='10' pattern='([0-9]{10})'>";
-    aadhar.innerHTML = "<input type='text' maxlength='16' pattern='([0-9]{16})'>";
+    firstname.innerHTML="<input type='text' name='fname"+i+"'>";
+    lastname.innerHTML="<input type='text' name='lname"+i+"'>";
+    age.innerHTML = "<input type='number' name='age"+i+"' min='1'>";
+    gender.innerHTML = "<select name='gender"+i+"'><option>Select</option><option>Male</option><option>Female</option></select>";
+    contact.innerHTML = "<input type='text' name='contact"+i+"' maxlength='10' pattern='([0-9]{10})'>";
+    aadhar.innerHTML = "<input type='text' maxlength='16' name='aadharno"+i+"' pattern='([0-9]{16})'>";
     deleteRow.innerHTML = "<button onclick='delRow(this)' class='delBtn'><i class='fa fa-trash' aria-hidden='true'></i></button>";
     
   }
   document.getElementById("iniPCount").style.display = "none";
-    document.getElementById("Pcount").disabled = "true";
+    document.getElementById("Pcount").readOnly = "true";
     document.getElementById("addbtn").style.display="inline";
     passengers = parseInt(document.getElementById("Pcount").value,10);
-  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
-  document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
+   document.getElementById("Pcount").value = passengers;
+   document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
+
 }
   function addRow(){
    var row1 = document.getElementById('passengertable').insertRow();
@@ -293,18 +296,18 @@ function tablerows(){
     var contact1 = row1.insertCell(4);
     var aadhar1 = row1.insertCell(5);
     var deleteRow1 = row1.insertCell(6);
-    firstname1.innerHTML="<input type='text'>";
-    lastname1.innerHTML="<input type='text'>";
-    age1.innerHTML = "<input type='number' min='1'>";
-    gender1.innerHTML = "<select><option>Select</option><option>Male</option><option>Female</option></select>";
-    contact1.innerHTML = "<input type='text' maxlength='10' pattern='([0-9]{10})'>";
-    aadhar1.innerHTML = "<input type='text' maxlength='16' pattern='([0-9]{16})'>";
+    firstname1.innerHTML="<input type='text' name='fname"+(passengers)+"'>";
+    lastname1.innerHTML="<input type='text' name='lname"+(passengers)+"'>";
+    age1.innerHTML = "<input type='number' name='age"+(passengers)+"' min='1'>";
+    gender1.innerHTML = "<select name='gender"+(passengers)+"'><option>Select</option><option>Male</option><option>Female</option></select>";
+    contact1.innerHTML = "<input type='text' name='contact"+(passengers)+"' maxlength='10' pattern='([0-9]{10})'>";
+    aadhar1.innerHTML = "<input type='text' maxlength='16' name='aadharno"+(passengers)+"' pattern='([0-9]{16})'>";
     deleteRow1.innerHTML = "<button onclick='delRow(this)' class='delBtn'><i class='fa fa-trash' aria-hidden='true'></i></button>";
    var cnt =  document.getElementById("Pcount").value;
    var newcnt = parseInt(cnt)+1;
-  document.getElementById("Pcount").value = newcnt;
   passengers = newcnt; 
-  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
+   document.getElementById("Pcount").value = passengers;
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
   document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
   }
   function delRow(r) {
@@ -312,78 +315,79 @@ function tablerows(){
     document.getElementById("passengertable").deleteRow(i);
     var cnt =  document.getElementById("Pcount").value;
    var newcnt = parseInt(cnt)-1;
-  document.getElementById("Pcount").value = newcnt;
   passengers = newcnt;
-  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";
+  document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
+  document.getElementById("Pcount").value = passengers;
   document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
 }
     
- function getdata() 
-{ 
-    
-  var selected_locn = document.getElementById("Locations").value; 
-  var xhttp = new XMLHttpRequest(); 
-   xhttp.onreadystatechange = function(){ 
-     if(xhttp.readyState == 4 && xhttp.status == 200) 
-    { 
-      var jsobj = JSON.parse(xhttp.response); 
-        for(var i=0;i<jsobj.length;i++) 
-        { 
-          if(selected_locn==jsobj[i].City)  
-          { 
-            cost1 = parseInt(jsobj[i].<?php echo $startloc; ?>,10); 
-            cost1 = cost1*2;  
-            console.log(cost1); 
-            document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*"; 
-          } 
-        } 
-        
-    } 
-   }; 
-    xhttp.open("GET","distance.json",true); 
-    xhttp.send(); 
-    document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers;
-}     
-function getcost()  
-{ 
-   var acc_pref = "3star";  
-  var meal_pref = "veg";  
-  if(document.getElementById("3star").checked)  
-  { 
-     acc_pref = document.getElementById("3star").value; 
-  } 
-  if(document.getElementById("5star").checked)  
-  { 
-     acc_pref = document.getElementById("5star").value; 
-  } 
-  if(document.getElementById("veg").checked)  
-  { 
-     meal_pref = document.getElementById("veg").value;  
-  } 
-  if(document.getElementById("nonveg").checked) 
-  { 
-     meal_pref = document.getElementById("nonveg").value; 
-  } 
-   var xhttp = new XMLHttpRequest();  
-   xhttp.onreadystatechange = function(){ 
-     if(xhttp.readyState == 4 && xhttp.status == 200) 
-    { 
-      var jsobj = JSON.parse(xhttp.response); 
-        for(var i=0;i<jsobj.length;i++) 
-        { 
-          if((meal_pref==jsobj[i].meal_pref) && (acc_pref==jsobj[i].acc_pref))  
-          { 
-             cost2 = parseInt(jsobj[i].cost,10);  
-             console.log(cost2);  
-             document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";  
-          } 
-        } 
-        
-    } 
-   }; 
-    xhttp.open("GET","cost.json",true); 
-    xhttp.send(); 
-    document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers;     
+ function getdata()	
+{	
+  	
+  var selected_locn = document.getElementById("Locations").value;	
+  var xhttp = new XMLHttpRequest();	
+   xhttp.onreadystatechange = function(){	
+     if(xhttp.readyState == 4 && xhttp.status == 200)	
+    {	
+      var jsobj = JSON.parse(xhttp.response);	
+        for(var i=0;i<jsobj.length;i++)	
+        {	
+          if(selected_locn==jsobj[i].City)	
+          {	
+            cost1 = parseInt(jsobj[i].<?php echo $startloc; ?>,10);	
+            cost1 = cost1*2;	
+            console.log(cost1);	
+            document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";	
+          }	
+        }	
+       	
+    }	
+   };	
+    xhttp.open("GET","distance.json",true);	
+    xhttp.send();
+    document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 	
+}   	
+function getcost()	
+{	
+   var acc_pref = "3star";	
+  var meal_pref = "veg";	
+  if(document.getElementById("3star").checked)	
+  {	
+     acc_pref = document.getElementById("3star").value;	
+  }	
+  if(document.getElementById("5star").checked)	
+  {	
+     acc_pref = document.getElementById("5star").value;	
+  }	
+  if(document.getElementById("veg").checked)	
+  {	
+     meal_pref = document.getElementById("veg").value;	
+  }	
+  if(document.getElementById("nonveg").checked)	
+  {	
+     meal_pref = document.getElementById("nonveg").value;	
+  }	
+   var xhttp = new XMLHttpRequest();	
+   xhttp.onreadystatechange = function(){	
+     if(xhttp.readyState == 4 && xhttp.status == 200)	
+    {	
+      var jsobj = JSON.parse(xhttp.response);	
+        for(var i=0;i<jsobj.length;i++)	
+        {	
+          if((meal_pref==jsobj[i].meal_pref) && (acc_pref==jsobj[i].acc_pref))	
+          {	
+             cost2 = parseInt(jsobj[i].cost,10);	
+             console.log(cost2);	
+             document.getElementById("total").innerHTML = "Total cost ₹" + (cost1+cost2+cost3)*passengers+"*";	
+          }	
+        }	
+       	
+    }	
+   };	
+    xhttp.open("GET","cost.json",true);	
+    xhttp.send();	
+    document.getElementById("costforpayment").value = (cost1+cost2+cost3)*passengers; 
+    	    
 }
 </script>
 </body>
