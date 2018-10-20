@@ -28,7 +28,7 @@
                     <a class="nav-link" href="#Upcoming">Upcoming Trips</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="www.google.com">FAQ</a>
+                    <a class="nav-link" href="https://www.google.com">FAQ</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -57,7 +57,7 @@
                             ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-<!--                         <a class="dropdown-item" href="#">Edit Profile</a> -->
+                        <!-- <a class="dropdown-item" href="#">Edit Profile</a> -->
                         <a class="dropdown-item" href="logout.php" name="logout_link">Logout</a>
                     </div>
                 </li>
@@ -193,7 +193,7 @@
            
             </div>
             <div class="modal-footer">
-              <input type="submit" class="yellowBtn joinBtn" value="Join Now" name="tripjoined"></form>
+              <input type="submit" class="yellowBtn joinBtn" name="tripjoined" value="Join Now"></form>
             </div>
         </div>
       </div>
