@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 $servername = 'localhost';
     $username = 'root';
     $password = '';
@@ -12,6 +12,7 @@ $servername = 'localhost';
     }
 
 
+//Admin create trip php code
 if(isset($_POST['create'])){
 
 	$startDate=$_POST['startDate'];
@@ -117,6 +118,89 @@ if(isset($_POST['create'])){
   if($tnStatus==1 && $itStatus==1){
   	header("Location: dashboard.php?uploadsuccess");
   }
+}
+
+//user join trip php code
+if(isset($_POST['JoinTrip'])){
+
+  $email=$_SESSION['user_email'];
+  $from_loc=$_POST['from_loc'];
+  $accom_pref=$_POST['accpref'];
+  $meal_pref=$_POST['mealpref'];
+  $travel_pref=$_POST['travelpref'];
+
+  //$tripId=$_SESSION['tripid'];
+
+  $sql3='SELECT TripId from trip where Image="'.$_SESSION['tripid'].'"';
+  //$tripId=mysqli_query($conn,$sql3);
+
+  $ans=mysqli_fetch_assoc(mysqli_query($conn,$sql3));
+  $tripId=$ans['TripId'];
+  
+
+
+  $i=0;
+ $passCount = $_POST['passengerCount'];
+  while($passCount!=0){
+  $fname=$_POST['fname'.$i];
+  $lname=$_POST['lname'.$i];
+  $age=(int)$_POST['age'.$i];
+  $gender=$_POST['gender'.$i];
+  $contact=$_POST['contact'.$i];
+  $aadhar=$_POST['aadharno'.$i];
+  
+
+  $sql1=  "INSERT into join_trip VALUES('".$email."','".$tripId."','".$fname."','".$lname."',".$age.",'".$gender."',".$contact.",".$aadhar.")";
+
+  if ($conn->query($sql1) === TRUE) 
+        {           
+                    //echo "inserted";
+        } 
+        else 
+        {
+            echo "Error: " . $sql1 . "<br>" . $conn->error;
+        }
+
+  $i++;
+  $passCount--;
+  }
+
+  $sql="INSERT into user_pref VALUES ('".$email."','".$from_loc."','".$accom_pref."','".$meal_pref."','".$travel_pref."')";
+
+  if ($conn->query($sql) === TRUE) 
+        {           
+                    //echo "inserted";
+          
+        } 
+        else 
+        {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $cost = (int)$_POST['cost'];
+        $tripKaID = $_POST['tripKaID'];
+        $email = $_POST['email'];
+        ?>
+
+        <form action="payment.php" id="myform" method="post">
+        <input type="hidden" name="cost" id="costforpayment" value="<?php echo $cost; ?>">
+        <input type="hidden" name="tripKaID" id="tripIdForMail" value="<?php echo $tripKaID;?>">
+        <input type="hidden" name="email" id="UseremailForMail" value="<?php echo $email;?>">
+        <input class="form-check-input yellowBtn bottomBtn" type="submit" name="PayTrip" value="Confirm Booking" style="background-color: #ffc312;
+            border: none;
+            width: 30%;
+            border-radius: 5px;
+            color: white;
+            height: 10%;
+            margin-left: 35%;
+            top: 50%;
+            position: absolute;
+            font-size: 24px;">
+        </form>
+
+        <?php
+        
+
 
 }
 ?>
+
