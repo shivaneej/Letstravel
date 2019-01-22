@@ -1,4 +1,13 @@
-# Letstravel
+<div align="center">
+	<h1>Letstravel</h1>
+	<img src="./images/favicon.png">
+</div>
 
 A web application made using HTML5, CSS3, Bootstrap, JavaScript, jQuery and PHP.	
-Web users can view and join trips planned by the organisation and take up a survey to get recommendations of places to visit.
+Web users can:
+* view and join trips planned by the organisation
+* take up a survey to get recommendations of places to visit
+
+Admin can:
+* create new trips
+* delete existing trips
