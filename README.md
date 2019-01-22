@@ -1,6 +1,6 @@
 <div align="center">
 	<h1>Letstravel</h1>
-	<img src="./images/favicon.png">
+	<img src="./images/favicon.png" height="100" width="100">
 </div>
 
 A web application made using HTML5, CSS3, Bootstrap, JavaScript, jQuery and PHP.	
