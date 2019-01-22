@@ -13,3 +13,9 @@ Web users can:
 Admin can:
 * create new trips
 * delete existing trips
+
+
+Contributers:
+* @shivaneej
+* @vickydaiya
+* @grushad
