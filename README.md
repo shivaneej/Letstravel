@@ -16,6 +16,6 @@ Admin can:
 
 
 Contributers:
-* [@shivaneej](https://github.com/shivaneej)
-* [@vickydaiya](https://github.com/vickydaiya)
-* [@grushad](https://github.com/grushad)
+* [Shivanee Jaiswal](https://github.com/shivaneej)
+* [Vicky Daiya](https://github.com/vickydaiya)
+* [Grusha Dharod](https://github.com/grushad)
